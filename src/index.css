@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.button_primary {
+  padding: 7px 25px 7px 0px;
+  background-color: white;
+  border: none;
+  color: #76b029;
+  font-weight: 500;
+}
+.button_info {
+  padding: 7px 25px;
+  background-color: #76b029;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+button, a{
+  cursor: pointer;
+}
