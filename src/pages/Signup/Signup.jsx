@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./Signup.css";
 import TextField from '@mui/material/TextField';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { green } from "@mui/material/colors";
 
 const emailRegex = /^[A-Za-z0-9][A-Za-z0-9+-]*[.]?[A-Za-z0-9+-]+@[A-Za-z0-9][A-Za-z0-9+-]*(.[A-Za-z0-9]+)?.[A-Za-z]{2,6}$/
 const passwordRegex = /^(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$/
@@ -14,7 +17,8 @@ const INITIAL_SIGNUP_OBJ = {
   mobile: "",
   lastname: "",
   confirmpassword: "",
-  emailMobValue: ""
+  emailMobValue: "",
+  companyName: ""
 }
 
 const INITIAL_VALIDITY_OBJ = {
@@ -31,7 +35,10 @@ const INITIAL_VALIDITY_OBJ = {
   confirmPasswordHelper: "",
   isConfirmPasswordInvalid: false,
   isEmailMobInvalid: false,
-  emailMobHelper: ""
+  emailMobHelper: "",
+  isCompanyNameInvalid: false,
+  companyNameHelper:"",
+
 }
 
 function SignUp() {
@@ -39,6 +46,8 @@ function SignUp() {
   const [signupObj, setsignupObj] = useState(INITIAL_SIGNUP_OBJ)
 
   const [validityObj, setValidityObj] = useState(INITIAL_VALIDITY_OBJ)
+  const [isSeller, setIsSeller] = useState(false)
+  
 
   function onEmailChange(event) {
     setsignupObj((prev) => { return { ...prev, email: event.target.value } })
@@ -62,6 +71,10 @@ function SignUp() {
 
   function onEmailMobChange(event) {
     setsignupObj((prev) => { return { ...prev, emailMobValue: event.target.value } })
+  }
+
+  function oncompanynameChange(event) {
+    setsignupObj((prev) => { return { ...prev, companyName: event.target.value } })
   }
 
   async function onSubmit(event) {
@@ -173,6 +186,19 @@ function SignUp() {
               onChange={onlastnameChange} />
           </div>}
 
+          {isSeller && <div class="text-box">
+            <TextField
+              value={signupObj.companyName}
+              id="outlined-basic"
+              label="Company name"
+              variant="outlined"
+              size="small"
+              error={validityObj.isCompanyNameInvalid}
+              helperText={validityObj.companyNameHelper}
+              onChange={oncompanynameChange} />
+          </div>}
+
+
           {isSignUp && <div class="text-box">
             <TextField
               value={signupObj.email}
@@ -224,9 +250,11 @@ function SignUp() {
 
               onChange={onconfirmpasswordChange} />
           </div>}
+          <FormControlLabel control={<Switch color="default" onChange={()=> setIsSeller(prev=> !prev)} />} label="Become a seller" />
           <div className="form_footer">
             <a className="button_primary" onClick={() => { changeMode() }}>{isSignUp ? 'Sign in instead' : 'Create Account'}</a>
             <button className="button_info" onClick={onSubmit}>Next</button>
+
           </div>
 
         </form>
