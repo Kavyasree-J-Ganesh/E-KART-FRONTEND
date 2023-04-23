@@ -3,7 +3,9 @@ import "./Signup.css";
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { green } from "@mui/material/colors";
+import { signup, signin  } from "../../Services/UserService";
+import { useNavigate } from "react-router-dom";
+
 
 const emailRegex = /^[A-Za-z0-9][A-Za-z0-9+-]*[.]?[A-Za-z0-9+-]+@[A-Za-z0-9][A-Za-z0-9+-]*(.[A-Za-z0-9]+)?.[A-Za-z]{2,6}$/
 const passwordRegex = /^(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$/
@@ -14,11 +16,10 @@ const INITIAL_SIGNUP_OBJ = {
   email: "",
   password: "",
   firstname: "",
-  mobile: "",
+  phonenumber: "",
   lastname: "",
   confirmpassword: "",
-  emailMobValue: "",
-  companyName: ""
+  companyname: ""
 }
 
 const INITIAL_VALIDITY_OBJ = {
@@ -34,8 +35,6 @@ const INITIAL_VALIDITY_OBJ = {
   isLastNameInvalid: false,
   confirmPasswordHelper: "",
   isConfirmPasswordInvalid: false,
-  isEmailMobInvalid: false,
-  emailMobHelper: "",
   isCompanyNameInvalid: false,
   companyNameHelper:"",
 
@@ -47,6 +46,8 @@ function SignUp() {
 
   const [validityObj, setValidityObj] = useState(INITIAL_VALIDITY_OBJ)
   const [isSeller, setIsSeller] = useState(false)
+  const navigate = useNavigate();
+
   
 
   function onEmailChange(event) {
@@ -66,12 +67,9 @@ function SignUp() {
   }
 
   function onMobileChange(event) {
-    setsignupObj((prev) => { return { ...prev, mobile: event.target.value } })
+    setsignupObj((prev) => { return { ...prev, phonenumber: event.target.value } })
   }
 
-  function onEmailMobChange(event) {
-    setsignupObj((prev) => { return { ...prev, emailMobValue: event.target.value } })
-  }
 
   function oncompanynameChange(event) {
     setsignupObj((prev) => { return { ...prev, companyName: event.target.value } })
@@ -79,11 +77,11 @@ function SignUp() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    let isEmailValid = !isSignUp || emailRegex.test(signupObj.email)
+    let isEmailValid = emailRegex.test(signupObj.email)
     let passwordValid = !isSignUp || passwordRegex.test(signupObj.password)
     let firstnameValid = !isSignUp || firstnameRegex.test(signupObj.firstname)
-    let mobileNumberValid = !isSignUp || mobileRegex.test(signupObj.mobile)
-    let emailMobValidator = isSignUp || (mobileRegex.test(signupObj.emailMobValue) || emailRegex.test(signupObj.emailMobValue))
+    let mobileNumberValid = !isSignUp || mobileRegex.test(signupObj.phonenumber)
+   
 
     console.log(signupObj)
 
@@ -111,12 +109,6 @@ function SignUp() {
       setValidityObj(prev => { return { ...prev, isMobileInvalid: false, mobileHelper: "" } })
     }
 
-    if (!emailMobValidator) {
-      setValidityObj(prev => { return { ...prev, isEmailMobInvalid: true, emailMobHelper: "Enter a valid mobile number/email" } })
-    } else {
-      setValidityObj(prev => { return { ...prev, isEmailMobInvalid: false, emailMobHelper: "" } })
-    }
-
 
     if (passwordValid && signupObj.password != signupObj.confirmpassword) {
       setValidityObj(prev => { return { ...prev, isConfirmPasswordInvalid: true, confirmPasswordHelper: "Password does not match" } })
@@ -124,6 +116,21 @@ function SignUp() {
 
       setValidityObj(prev => { return { ...prev, isConfirmPasswordInvalid: false, confirmPasswordHelper: "" } })
     }
+
+    try {
+      const result = isSignUp ?  await signup(
+        signupObj
+      ) : await signin({email:signupObj.email, password: signupObj.password})
+
+      if(!isSignUp){
+
+          const token = result.data.token;
+          localStorage.setItem("auth", token)
+          navigate("home")
+      }
+  } catch (e) {
+      console.log(e)
+  }
 
 
   }
@@ -152,17 +159,6 @@ function SignUp() {
 
       <div className="form">
         <form action="">
-          {!isSignUp && <div class="text-box">
-            <TextField
-              id="outlined-basic"
-              label="Enter Email/Mobile number"
-              variant="outlined"
-              size="small"
-              value={signupObj.emailMobValue}
-              error={validityObj.isEmailMobInvalid}
-              helperText={validityObj.emailMobHelper}
-              onChange={onEmailMobChange} />
-          </div>}
           
           {isSignUp && <div class="text-box">
             <TextField
@@ -188,7 +184,7 @@ function SignUp() {
 
           {isSeller && <div class="text-box">
             <TextField
-              value={signupObj.companyName}
+              value={signupObj.companyname}
               id="outlined-basic"
               label="Company name"
               variant="outlined"
@@ -199,7 +195,7 @@ function SignUp() {
           </div>}
 
 
-          {isSignUp && <div class="text-box">
+          <div class="text-box">
             <TextField
               value={signupObj.email}
               id="outlined-basic"
@@ -208,13 +204,12 @@ function SignUp() {
               size="small"
               error={validityObj.isEmailInvalid}
               helperText={validityObj.emailHelper}
-              onChange={onEmailChange}
-            />
-          </div>}
+              onChange={onEmailChange} />
+          </div>
 
           {isSignUp && <div class="text-box">
             <TextField
-              value={signupObj.mobile}
+              value={signupObj.phonenumber}
               id="outlined-basic"
               label="Mobile Number"
               variant="outlined"
