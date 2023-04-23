@@ -9,7 +9,7 @@ const Product = (props) => {
         navigate(`/home/${id}`)
     }
     return (
-        <div className="product">
+        <div className="product" onClick={()=>showProductDetails(props.product._id)}>
             <div className="product_image">
                 <img src={props.product.image} alt={props.product.productName} />
             </div>
