@@ -5,6 +5,7 @@ import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { signup, signin  } from "../../Services/UserService";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 
 const emailRegex = /^[A-Za-z0-9][A-Za-z0-9+-]*[.]?[A-Za-z0-9+-]+@[A-Za-z0-9][A-Za-z0-9+-]*(.[A-Za-z0-9]+)?.[A-Za-z]{2,6}$/
@@ -47,6 +48,7 @@ function SignUp() {
   const [validityObj, setValidityObj] = useState(INITIAL_VALIDITY_OBJ)
   const [isSeller, setIsSeller] = useState(false)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   
 
@@ -123,7 +125,6 @@ function SignUp() {
       ) : await signin({email:signupObj.email, password: signupObj.password})
 
       if(!isSignUp){
-
           const token = result.data.token;
           localStorage.setItem("auth", token)
           navigate("home")
@@ -249,7 +250,6 @@ function SignUp() {
           <div className="form_footer">
             <a className="button_primary" onClick={() => { changeMode() }}>{isSignUp ? 'Sign in instead' : 'Create Account'}</a>
             <button className="button_info" onClick={onSubmit}>Next</button>
-
           </div>
 
         </form>
