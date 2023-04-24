@@ -1,0 +1,254 @@
+.home_nav {
+    font: normal normal normal 12px/16px Roboto;
+    letter-spacing: 0px;
+    color: #9D9D9D;
+    opacity: 1;
+    text-decoration: none;
+}
+
+.product_detail {
+    display: flex;
+    flex-direction: row;
+    padding: 20px 12%;
+}
+
+.product_image {
+    width: 40%;
+}
+
+.imagegallery {
+    display: flex;
+}
+
+.thumbnail {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2px;
+}
+
+.thumbnail>* {
+    width: 100%
+}
+
+.main_image {
+    padding: 20px 40px;
+    border: 1px solid #D1D1D1;
+
+    /* height: 400px;
+    width: 350px;
+    padding: 10px;
+    border: 1px solid #dcdcdc; */
+}
+
+.product_buy {
+    display: flex;
+    margin-top: 10px;
+}
+
+.product_buy>* {
+    flex: 1;
+    padding: 10px 0px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.product_buy>*:not(:last-child) {
+    margin-right: 20px;
+}
+
+.product_buy_addtocart {
+    background-color: #A03037;
+}
+
+.product_buy_wishlist {
+    background-color: #333333;
+}
+
+.product_add_or_remove {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.product_add_or_remove>*:not(:last-child) {
+    margin-right: 5px;
+}
+
+.product_add,
+.product_remove {
+    width: 2rem;
+    border: 1px solid #E4E4E4;
+    border-radius: 100%;
+    font-size: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.product_count {
+    font-size: 19px;
+    color: black;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #E4E4E4;
+    height: 100%;
+    border-radius: 12px;
+}
+
+.product_description {
+    display: flex;
+    flex-direction: column;
+}
+
+.product_summary {
+    padding: 20px 0;
+}
+
+.product_summary>*:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.product_description {
+    flex: 1
+}
+
+.product_description>* {
+    width: 100%
+}
+
+.product_description>*:not(:last-child) {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #9D9D9D;
+}
+
+.product_details_heading {
+    text-align: left;
+    font: normal normal normal 24px/19px Roboto;
+    letter-spacing: 0px;
+    color: #0A0102;
+    opacity: 1;
+    font-weight: 600;
+}
+
+.product_details_author {
+    font: normal normal normal 16px/13px Roboto;
+    letter-spacing: 0px;
+    color: #878787;
+    opacity: 1;
+    font-weight: 500;
+    display: inline-flex;
+}
+
+.product_price>*:not(:last-child) {
+    margin-right: 5px
+}
+
+.product_details_price {
+    font: normal normal bold 24px/16px Roboto;
+    letter-spacing: 0px;
+    color: #0A0102;
+    opacity: 1;
+    font-weight: 600
+}
+
+.product_details_discount_price {
+    text-decoration: line-through;
+    font: normal normal normal 18px/13px Roboto;
+    letter-spacing: 0px;
+    color: #878787;
+    opacity: 1;
+}
+
+.product_review {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.product_review>*:not(:last-child) {
+    margin-right: 5px;
+}
+
+.product_review_value {
+    font: normal normal bold 14px/13px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    background-color: #388E3C;
+    padding: 5px 10px;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+}
+
+.product_review_count {
+    font: normal normal normal 14px/13px Roboto;
+    letter-spacing: 0px;
+    color: #878787;
+    opacity: 1;
+}
+
+.product_description {
+    padding: 0 40px;
+}
+
+.product_info {
+    padding: 10px 0;
+}
+
+.product_info_head {
+    color: #878787
+}
+
+.product_info_desc {
+    margin-top: 10px;
+    color: #373434
+}
+
+.product_feedback {}
+
+.product_feedback_head {
+    color: #373434;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.product_rating {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 30px
+}
+
+.product_rating_desc {
+    font-size: 14px
+}
+
+.product_rating_stars {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.product_rating_stars>* {
+    margin-right: 10px;
+    margin-top: 5px
+}
+
+
+
+
+.feedback-box {
+    padding: 20px 10px;
+    background-color: #f5f5f5;
+    margin-top: 7px;
+}
+
+.feedback-box .MuiInputBase-root {
+    border: none;
+    height: 70px;
+}
