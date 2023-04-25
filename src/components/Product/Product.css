@@ -5,13 +5,13 @@
     cursor: pointer;
 }
 
-.product_image{
+.product_img{
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
-.product_image img{
+.product_img img{
     width:100%
 }
 
@@ -29,7 +29,7 @@
     text-align: left;
     font: normal normal normal 18px/19px Roboto;
     letter-spacing: 0px;
-    color: #0A0102;
+    color: #76b029;
     opacity: 1;
     font-weight: 600;
 }

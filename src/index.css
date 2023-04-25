@@ -38,3 +38,7 @@ code {
 button, a{
   cursor: pointer;
 }
+
+::-webkit-scrollbar{
+  display: none;
+}
