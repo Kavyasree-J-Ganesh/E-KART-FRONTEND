@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Signup.css";
+import "./AddProduct.css";
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -41,7 +41,7 @@ const INITIAL_VALIDITY_OBJ = {
 
 }
 
-function SignUp() {
+function AddProduct() {
   const [isSignUp, setIsSignUp] = useState(true);
   const [signupObj, setsignupObj] = useState(INITIAL_SIGNUP_OBJ)
 
@@ -263,4 +263,4 @@ function SignUp() {
   );
 }
 
-export default SignUp
+export default AddProduct

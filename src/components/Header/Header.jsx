@@ -59,75 +59,69 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const Header = props => {
-    const navigate = useNavigate() 
+    const navigate = useNavigate()
 
     const logout = () => {
         navigate("/")
     }
 
-    return (
-        <div>
+    const cart = () => {
+        navigate("/cart")
+    }
 
-            <div className="header">
+    const wishlist = () => {
+        navigate("/wishlist")
+    }
 
-                <img className="header_image" src="/app-logo.jpg" alt="logo" />
-                <h1 className="header_heading">Products</h1>
-                <div className="header_search">
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon color="action" />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search for products…"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
-                </div>
+    const user = () => {
+        navigate("/user")
+    }
 
+return (
 
-                <div className="header_icons" style={{ marginRight: '2.5rem' }}>
-                    <Person2OutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
-                    <p>User</p>
-                </div>
+        <div className="header">
 
-
-                <div className="header_icons" style={{ marginRight: '2.5rem' }}>
-                    <FavoriteOutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
-                    <p>Wishlist</p>
-                </div>
-
-                <div className="header_icons">
-                    <AddShoppingCartOutlinedIcon color="white" sx={{ fontSize: 20, color: 'white' }} />
-                    <p>Cart</p>
-                    <span className="cart_quantity">1</span>
-                </div>
-
-                <div className="header_icons" style={{ marginLeft: '1.5rem' }} onClick={logout}>
-                    <PowerSettingsNewOutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
-                    <p>Log Out</p>
-                </div>
-
+            <img className="header_image" src="/app-logo.jpg" alt="logo" style={{cursor:"pointer"}} 
+             onClick={()=> navigate("/home")}/>
+            <div className="header_search">
+                <Search>
+                    <SearchIconWrapper>
+                        <SearchIcon color="action" />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                        placeholder="Search"
+                        inputProps={{ 'aria-label': 'search' }}
+                    />
+                </Search>
             </div>
 
 
-            <div className="catagory">
-                <div className="catagory_icons" style={{ marginRight: '2.5rem' }}>
-                    <MenuOutlinedIcon sx={{ fontSize: 20, color: 'green' }} />
-                    <p className="filter">Filter</p>
-                </div>
-                
-                <h4 className="catagory1">Electronics</h4>
-                <h4 className="catagory2">Home & Furniture</h4>
-                <h4 className="catagory3">Men</h4>
-                <h4 className="catagory4">Women</h4>
-                <h4 className="catagory5">Baby & Kids</h4>
-                <h4 className="catagory6">Grocery</h4>
+            <div className="header_icons" style={{ marginRight: '1rem' }} onClick={user}>
+                <Person2OutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
+                <p>User</p>
             </div>
 
-           
+
+            <div className="header_icons" style={{ marginRight: '1rem' }} onClick={wishlist}>
+                <FavoriteOutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
+                <p>Wishlist</p>
+            </div>
+
+            <div className="header_icons" onClick={cart}>
+                <AddShoppingCartOutlinedIcon color="white" sx={{ fontSize: 20, color: 'white' }} />
+                <p>Cart</p>
+                <span className="cart_quantity">1</span>
+            </div>
+
+            <div className="header_icons" style={{ marginLeft: '1rem' }} onClick={logout}>
+                <PowerSettingsNewOutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
+                <p>Log Out</p>
+            </div>
+
         </div>
-    )
+)
 }
+
 
 
 export default Header

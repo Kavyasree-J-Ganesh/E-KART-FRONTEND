@@ -3,20 +3,35 @@ import Header from "../../components/Header/Header"
 import "../Homepage/Homepage.css"
 import { getProducts } from "../../Services/ProductService";
 import Product from "../../components/Product/Product";
+import { getCart } from "../../Services/cartService";
+import Category from "../../components/Category/Catagory";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const Homepage = props => {
-    const [productList, setProductList] = useState([]);
+    const product = useSelector(state=> state.product)
+    const dispatch = useDispatch();
 
     useEffect(() => {
         getProductList();
+        getCartItems()
     }, [])
+
+
+
+    async function getCartItems(){
+        try{
+            const cart = await getCart();
+            dispatch({type:"SET_CART", payload: cart.data.data})
+        }catch (e){
+          console.log(e)
+        }
+    }
 
     async function getProductList() {
         try {
             const products = await getProducts();
-            console.log(products.data)
-            setProductList(products.data)
+            dispatch({type:"SET_PRODUCTS", payload: products.data})
         } catch (e) {
             console.log(e)
         }
@@ -24,8 +39,9 @@ const Homepage = props => {
     return (
         <div className="homepage">
             <Header />
+            <Category/>
             <div className="homepage_products">
-                 {productList.map(product=> <Product product={product}/>)}
+                 {product?.products.map(product=> <Product product={product}/>)}
             </div>
         </div>
     )
