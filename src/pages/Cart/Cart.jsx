@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import "./Cart.css";
 import { addToCart, getCart, removeFromCart } from "../../Services/cartService"
@@ -7,13 +7,14 @@ import { useEffect } from "react";
 
 const Cart = (props) => {
 
-    const cart = useSelector(state => state.cart)
+    const cart = useSelector(state=> state.cart)
 
     const dispatch = useDispatch()
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        getCartItems();
-    }, [])
+    useEffect(()=>{
+       getCartItems();
+    },[])
 
     async function getCartItems() {
         try {
@@ -65,12 +66,15 @@ const Cart = (props) => {
                             </div>
                         </div>
                     </div>
+                    
                 ))}
             </div>}
             {cart && cart.product && <div className="cart_place">
-                <button className="cart_place_order">
-                    PLACE ORDER
-                </button>
+                    <button className="cart_place_order" onClick={() => {
+                  navigate("/address");
+                  }}>
+                        PLACE ORDER
+                    </button>
             </div>}
         </div>)
 }

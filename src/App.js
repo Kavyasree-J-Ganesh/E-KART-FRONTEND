@@ -11,7 +11,10 @@ import Wishlist from "./pages/Wishlist/Wishlist";
 import Cart1 from "./pages/Cart/Cart1";
 import Strip_Payment from "./Strip_Payment/Strip_Payment";
 import AddressDetails from "./pages/Cart/AddressDetails";
+import './App.css';
+
 function App() {
+  
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -19,7 +22,7 @@ function App() {
           <Route path="/" element={<Signup />} />
           <Route path="/home" element={<Homepage />} />
           <Route path="/home/:id" element={<ProductDetails />} />
-          <Route path="/cart" element={<Cart1 />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/address" element={<AddressDetails />} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/wishlist" element={<Wishlist />} />
@@ -31,3 +34,5 @@ function App() {
 }
 
 export default App;
+
+

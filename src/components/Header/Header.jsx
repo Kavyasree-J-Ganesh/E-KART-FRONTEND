@@ -9,6 +9,10 @@ import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOu
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import "./Header.css"
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
+import AddProduct from "../AddProduct/AddProduct";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -60,6 +64,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Header = props => {
     const navigate = useNavigate()
+    const auth = useSelector(state=> state.auth)
+
+    const [isAddProduct, setIsAddProduct] = useState(false)
 
     const logout = () => {
         navigate("/")
@@ -77,12 +84,14 @@ const Header = props => {
         navigate("/user")
     }
 
-return (
+    return (
 
         <div className="header">
-
-            <img className="header_image" src="/app-logo.jpg" alt="logo" style={{cursor:"pointer"}} 
-             onClick={()=> navigate("/home")}/>
+            <Modal open={isAddProduct} close={()=> setIsAddProduct(prev=> !prev)} >
+                <AddProduct/>
+            </Modal>
+            <img className="header_image" src="/app-logo.jpg" alt="logo" style={{ cursor: "pointer" }}
+                onClick={() => navigate("/home")} />
             <div className="header_search">
                 <Search>
                     <SearchIconWrapper>
@@ -102,16 +111,21 @@ return (
             </div>
 
 
-            <div className="header_icons" style={{ marginRight: '1rem' }} onClick={wishlist}>
+            {!auth.isAdmin && <div className="header_icons" style={{ marginRight: '1rem' }} onClick={wishlist}>
                 <FavoriteOutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
                 <p>Wishlist</p>
-            </div>
+            </div>}
 
-            <div className="header_icons" onClick={cart}>
+            {!auth.isAdmin && <div className="header_icons" onClick={cart}>
                 <AddShoppingCartOutlinedIcon color="white" sx={{ fontSize: 20, color: 'white' }} />
                 <p>Cart</p>
                 <span className="cart_quantity">1</span>
-            </div>
+            </div>}
+
+            {auth.isAdmin && <div className="header_icons" onClick={()=> setIsAddProduct(true)}>
+                <AddShoppingCartOutlinedIcon color="white" sx={{ fontSize: 20, color: 'white' }} />
+                <p>Add Product</p>
+            </div>}
 
             <div className="header_icons" style={{ marginLeft: '1rem' }} onClick={logout}>
                 <PowerSettingsNewOutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
@@ -119,7 +133,7 @@ return (
             </div>
 
         </div>
-)
+    )
 }
 
 

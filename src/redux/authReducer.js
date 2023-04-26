@@ -1,6 +1,5 @@
 const initialState = {
-	isAdmin: false,
-    userName: "",
+	isAdmin: false
 	
 };
 
@@ -11,13 +10,11 @@ export const authReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isAdmin : action.payload.isAdmin,
-				userName: action.payload.userName
 			};
 		case 'LOGOUT':
 			return {
 				...state,
 				isAdmin : false,
-				userName: ""
 			};
 		default:
 			return state;
