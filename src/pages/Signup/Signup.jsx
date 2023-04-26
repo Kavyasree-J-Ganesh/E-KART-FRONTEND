@@ -48,7 +48,7 @@ function SignUp() {
   const [validityObj, setValidityObj] = useState(INITIAL_VALIDITY_OBJ)
   const [isSeller, setIsSeller] = useState(false)
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   
 
@@ -125,13 +125,16 @@ function SignUp() {
     }
 
     try {
+      let {companyname, ...nonAdminObj} = signupObj
       const result = isSignUp ?  await signup(
-        signupObj
+        isSeller ? {...signupObj, isAdmin:true} : nonAdminObj 
       ) : await signin({email:signupObj.email, password: signupObj.password})
 
       if(!isSignUp){
           const token = result.data.token;
           localStorage.setItem("auth", token)
+          localStorage.setItem("isAdmin", result.data.isAdmin)
+          dispatch({type: "LOGIN", payload: result.data})
           navigate("home")
       }
   } catch (e) {
