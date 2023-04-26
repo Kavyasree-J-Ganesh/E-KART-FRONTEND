@@ -7,13 +7,13 @@ import { useEffect } from "react";
 
 const Cart = (props) => {
 
-    const cart = useSelector(state=> state.cart)
+    const cart = useSelector(state => state.cart)
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-       getCartItems();
-    },[])
+    useEffect(() => {
+        getCartItems();
+    }, [])
 
     async function getCartItems() {
         try {
@@ -49,7 +49,7 @@ const Cart = (props) => {
                 {cart.product.map(product => (
                     <div className="cart_item">
                         <div className="cart_item_image">
-                            <img style={{ width: "4rem" }} src={product.image} alt="product" />
+                            <img style={{ width: "6rem", height:"85%" }} src={product.image} alt="product" />
                         </div>
                         <div className="cart_item_desc">
                             <h6 className="cart_item_heading">{product.title}</h6>
@@ -58,22 +58,23 @@ const Cart = (props) => {
                                 <span className="cart_item_price">{`Rs. ${product.realPrice}`}</span>
                                 <span className="cart_item_discount_price">{`Rs. 500`}</span>
                             </div>
-                            <div className="cart_add_or_remove">
-                                <button className="cart_add" onClick={() => addToCartList(product.productId)}>+</button>
-                                <div className="cart_count">{product.quantity}</div>
-                                <button className="cart_remove" onClick={() => removeFromCartList(product.productId)}>-</button>
-                            </div>
+                        </div>
+                        <div className="cart_add_or_remove">
+                            <button className="cart_add" onClick={() => addToCartList(product.productId)}>+</button>
+                            <div className="cart_count">{product.quantity}</div>
+                            <button className="cart_remove" onClick={() => removeFromCartList(product.productId)}>-</button>
+                            <a className="cart_remove_all">Remove</a>
                         </div>
                     </div>
-                    
+
                 ))}
             </div>}
             {cart && cart.product && <div className="cart_place">
-                    <button className="cart_place_order" onClick={() => {
-                  navigate("/address");
-                  }}>
-                        PLACE ORDER
-                    </button>
+                <button className="cart_place_order" onClick={() => {
+                    navigate("/address");
+                }}>
+                    PLACE ORDER
+                </button>
             </div>}
         </div>)
 }

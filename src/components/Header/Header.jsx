@@ -70,6 +70,7 @@ const Header = props => {
 
     const logout = () => {
         navigate("/")
+        localStorage.removeItem("auth")
     }
 
     const cart = () => {
@@ -102,12 +103,6 @@ const Header = props => {
                         inputProps={{ 'aria-label': 'search' }}
                     />
                 </Search>
-            </div>
-
-
-            <div className="header_icons" style={{ marginRight: '1rem' }} onClick={user}>
-                <Person2OutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
-                <p>User</p>
             </div>
 
 
