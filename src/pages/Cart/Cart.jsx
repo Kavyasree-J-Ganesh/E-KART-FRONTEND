@@ -8,9 +8,8 @@ import { useEffect } from "react";
 const Cart = (props) => {
 
     const cart = useSelector(state=> state.cart)
-
-    const dispatch = useDispatch()
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     useEffect(()=>{
        getCartItems();
