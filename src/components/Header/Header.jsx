@@ -70,6 +70,7 @@ const Header = props => {
 
     const logout = () => {
         navigate("/")
+        localStorage.removeItem("auth")
     }
 
     const cart = () => {
