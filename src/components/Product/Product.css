@@ -1,0 +1,91 @@
+.product{
+    border: 1px solid #E2E2E2;
+    border-radius: 3px;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.product_img{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product_img img{
+    width:100%
+}
+
+.product_details{
+    display:flex;
+    flex-direction: column;
+    padding: 9px 20px;
+}
+
+.product_details >*:not(:last-child){
+    margin-bottom: 5px;
+}
+
+.product_details_title{
+    text-align: left;
+    font: normal normal normal 18px/19px Roboto;
+    letter-spacing: 0px;
+    color: #76b029;
+    opacity: 1;
+    font-weight: 600;
+}
+
+.product_details_description{
+    font: normal normal normal 12px/13px Roboto;
+    letter-spacing: 0px;
+    color: #878787;
+    opacity: 1;
+    
+}
+
+.product_realPrice >*:not(:last-child) {
+    margin-right: 5px
+}
+
+.product_details_realPrice{
+    font: normal normal bold 14px/16px Roboto;
+    letter-spacing: 0px;
+    color: #0A0102;
+    opacity: 1;
+    font-weight: 600
+}
+
+.product_details_discounted_price {
+    text-decoration: line-through;
+    font: normal normal normal 10px/13px Roboto;
+    letter-spacing: 0px;
+    color: #878787;
+    opacity: 1;
+}
+
+/* .product_review{
+    display: flex;
+    align-items: center;
+}
+
+.product_review >*:not(:last-child){
+   margin-right: 5px;
+}
+
+.product_review_value{
+    font: normal normal bold 10px/13px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    background-color: #388E3C;
+    padding: 2px;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+} */
+
+/* .product_review_count{
+    font: normal normal normal 10px/13px Roboto;
+    letter-spacing: 0px;
+    color: #878787;
+    opacity: 1;
+} */
