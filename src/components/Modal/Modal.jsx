@@ -13,7 +13,7 @@ const style = {
     boxShadow: 24,
     p: 4,
     zIndex: 10,
-    backgroundColor: "white",
+    backgroundColor: "White",
     border: "none"
 };
 

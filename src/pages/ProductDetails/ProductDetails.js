@@ -87,7 +87,7 @@ const ProductDetails = (props) => {
                                 <button
                                     className="product_add_to_cart"
                                     onClick={addToCartList}>
-                                    {currentProduct?.quantity ? 'GOTO CART' : 'ADD TO CART'}
+                                    {currentProduct?.quantity ? 'GO TO CART' : 'ADD TO CART'}
                                 </button>
                                 <button className="product_buy_wishlist">WISHLIST</button>
                             </div>
