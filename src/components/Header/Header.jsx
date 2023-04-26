@@ -105,12 +105,6 @@ const Header = props => {
             </div>
 
 
-            <div className="header_icons" style={{ marginRight: '1rem' }} onClick={user}>
-                <Person2OutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
-                <p>User</p>
-            </div>
-
-
             {!auth.isAdmin && <div className="header_icons" style={{ marginRight: '1rem' }} onClick={wishlist}>
                 <FavoriteOutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
                 <p>Wishlist</p>

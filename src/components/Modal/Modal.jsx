@@ -20,7 +20,6 @@ const style = {
 export default function BasicModal(props) {
 
     return (
-        <div>
             <Modal
                 keepMounted
                 open={props.open}
@@ -33,6 +32,5 @@ export default function BasicModal(props) {
                 </div>
 
             </Modal>
-        </div>
     );
 }

@@ -254,7 +254,8 @@ function SignUp() {
 
               onChange={onconfirmpasswordChange} />
           </div>}
-          <FormControlLabel control={<Switch color="default" onChange={()=> setSeller()} />} label="Become a seller" />
+          {isSignUp &&
+          <FormControlLabel control={<Switch color="default" onChange={()=> setSeller()} />} label="Become a seller" />}
           <div className="form_footer">
             <a className="button_primary" onClick={() => { changeMode() }}>{isSignUp ? 'Sign in instead' : 'Create Account'}</a>
             <button className="button_info" onClick={onSubmit}>Next</button>
