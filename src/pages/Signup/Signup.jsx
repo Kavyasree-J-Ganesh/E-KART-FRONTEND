@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { signup, signin  } from "../../Services/UserService";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { toaster } from "../../utils/toast";
 
 
 const emailRegex = /^[A-Za-z0-9][A-Za-z0-9+-]*[.]?[A-Za-z0-9+-]+@[A-Za-z0-9][A-Za-z0-9+-]*(.[A-Za-z0-9]+)?.[A-Za-z]{2,6}$/
@@ -137,8 +138,11 @@ function SignUp() {
           dispatch({type: "LOGIN", payload: result.data})
           navigate("home")
       }
+      console.log(result)
+     toaster("info", result.data.message )
   } catch (e) {
-      console.log(e)
+    console.log(e)
+    toaster("error", e.message )
   }
 
 
