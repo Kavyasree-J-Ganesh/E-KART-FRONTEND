@@ -16,16 +16,16 @@ import AddressDetails from "./pages/Cart/AddressDetails";
 import './App.css';
 
 function App() {
-  
+
   return (
     <Provider store={store}>
-      <ToastContainer  />
+      <ToastContainer />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Signup />} />
           <Route path="/home" element={<Homepage />} />
           <Route path="/home/:id" element={<ProductDetails />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart1 />} />
           <Route path="/address" element={<AddressDetails />} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/wishlist" element={<Wishlist />} />

@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const headerConfig = {headers:{Authorization: `bearer ${localStorage.getItem("auth")}`}}
+const headerConfig = { headers: { Authorization: `bearer ${localStorage.getItem("auth")}` } }
 
 export const getCart = async () => {
     const result = await axios.get("http://localhost:6060/api/v1/cart", headerConfig)
@@ -8,11 +8,18 @@ export const getCart = async () => {
 }
 
 export const addToCart = async (id) => {
-    const result = await axios.post(`http://localhost:6060/api/v1/cart/${id}`,{}, headerConfig)
+    const result = await axios.post(`http://localhost:6060/api/v1/cart/${id}`, {}, headerConfig)
     return result
 }
 
 export const removeFromCart = async (id) => {
-    const result = await axios.put(`http://localhost:6060/api/v1/cart/${id}`,{}, headerConfig)
+    const result = await axios.put(`http://localhost:6060/api/v1/cart/${id}`, {}, headerConfig)
     return result
 }
+
+export const updateAddress = async () => {
+    const result = await axios.put(`http://localhost:6060/api/v1/cart/updateAddress`, {}, headerConfig)
+    return result
+}
+
+
