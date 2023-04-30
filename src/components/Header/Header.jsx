@@ -1,18 +1,17 @@
 import React from "react"
-import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import "./Header.css"
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
 import AddProduct from "../AddProduct/AddProduct";
+import { toaster } from "../../utils/toast";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -64,9 +63,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Header = props => {
     const navigate = useNavigate()
-    const auth = useSelector(state=> state.auth)
+    const auth = useSelector(state => state.auth)
+    const dispatch = useDispatch();
 
     const [isAddProduct, setIsAddProduct] = useState(false)
+
+    const isAuthenticationRequired = ()=>{
+        if(!auth.isLogin) {
+           toaster("info", "login/signup to continue")
+           dispatch({type:"SET_LOGIN_REQUIRED"})
+           return true
+        }
+
+        return false
+    }
 
     const logout = () => {
         navigate("/")
@@ -74,25 +84,33 @@ const Header = props => {
     }
 
     const cart = () => {
+        if(isAuthenticationRequired()){
+            return
+        }
         navigate("/cart")
     }
 
     const wishlist = () => {
+        if(isAuthenticationRequired()){
+            return
+        }
         navigate("/wishlist")
     }
 
     const user = () => {
+        if(isAuthenticationRequired()){
+            return
+        }
         navigate("/user")
     }
 
     return (
 
         <div className="header">
-            <Modal open={isAddProduct} close={()=> setIsAddProduct(prev=> !prev)} >
-                <AddProduct/>
+            <Modal open={isAddProduct} close={() => setIsAddProduct(prev => !prev)} >
+                <AddProduct />
             </Modal>
-            <img className="header_image" src="/app-logo.jpg" alt="logo" style={{ cursor: "pointer" }}
-                onClick={() => navigate("/home")} />
+            <h3>E-KART</h3>
             <div className="header_search">
                 <Search>
                     <SearchIconWrapper>
@@ -105,26 +123,19 @@ const Header = props => {
                 </Search>
             </div>
 
+            <div className="header_actions">
+                {!auth.isAdmin && <div className="header_icons" onClick={wishlist}>
+                    <FavoriteBorderOutlinedIcon sx={{ fontSize: 25 }} />
+                </div>}
 
-            {!auth.isAdmin && <div className="header_icons" style={{ marginRight: '1rem' }} onClick={wishlist}>
-                <FavoriteOutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
-                <p>Wishlist</p>
-            </div>}
+                {!auth.isAdmin && <div className="header_icons" onClick={cart}>
+                    <ShoppingBagOutlinedIcon  color="white" sx={{ fontSize: 25 }} />
+                    <span className="cart_quantity">1</span>
+                </div>}
 
-            {!auth.isAdmin && <div className="header_icons" onClick={cart}>
-                <AddShoppingCartOutlinedIcon color="white" sx={{ fontSize: 20, color: 'white' }} />
-                <p>Cart</p>
-                <span className="cart_quantity">1</span>
-            </div>}
-
-            {auth.isAdmin && <div className="header_icons" onClick={()=> setIsAddProduct(true)}>
-                <AddShoppingCartOutlinedIcon color="white" sx={{ fontSize: 20, color: 'white' }} />
-                <p>Add Product</p>
-            </div>}
-
-            <div className="header_icons" style={{ marginLeft: '1rem' }} onClick={logout}>
-                <PowerSettingsNewOutlinedIcon sx={{ fontSize: 20, color: 'white' }} />
-                <p>Log Out</p>
+                <div className="header_icons" onClick={logout}>
+                    <PowerSettingsNewOutlinedIcon sx={{ fontSize: 25 }} />
+                </div>
             </div>
 
         </div>

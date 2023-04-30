@@ -43,7 +43,7 @@ const INITIAL_VALIDITY_OBJ = {
 }
 
 function SignUp() {
-  const [isSignUp, setIsSignUp] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(false);
   const [signupObj, setsignupObj] = useState(INITIAL_SIGNUP_OBJ)
 
   const [validityObj, setValidityObj] = useState(INITIAL_VALIDITY_OBJ)
@@ -136,10 +136,14 @@ function SignUp() {
           localStorage.setItem("auth", token)
           localStorage.setItem("isAdmin", result.data.isAdmin)
           dispatch({type: "LOGIN", payload: result.data})
-          navigate("home")
+          navigate("./home")
       }
-      console.log(result)
      toaster("info", result.data.message )
+     if(isSignUp){
+       setIsSignUp(false)
+       toaster("info", "Login to access your account" )
+       setsignupObj(INITIAL_SIGNUP_OBJ)
+     }
   } catch (e) {
     console.log(e)
     toaster("error", e.message )
@@ -156,20 +160,7 @@ function SignUp() {
 
   return (
     <div className="signup-page">
-
-      <div
-        className="image-box"
-        style={{
-          backgroundImage: "url(" + Image + ")",
-        }}
-      >
-        <h1 className="description">{isSignUp ? `Looks like you're new here!` : 'Login'}</h1>
-        <p className="sub-description">{isSignUp ? 'Signup with your details to get started' : 'Get access to your Orders, Wishlist and Recommendations'}</p>
-        <div className="app-logo">
-          <img src="./app-logo.jpg" alt="Logo" />
-        </div>
-      </div>
-
+      <h2 className="signup-page_heading">{isSignUp ? "Signup" : "Login"}</h2>
       <div className="form">
         <form action="">
           
@@ -261,8 +252,8 @@ function SignUp() {
           {isSignUp &&
           <FormControlLabel control={<Switch color="default" onChange={()=> setSeller()} />} label="Become a seller" />}
           <div className="form_footer">
-            <a className="button_primary" onClick={() => { changeMode() }}>{isSignUp ? 'Sign in instead' : 'Create Account'}</a>
-            <button className="button_info" onClick={onSubmit}>Next</button>
+            <button className="button_info" onClick={onSubmit}>{isSignUp ? "Sign up" : "Sign in"}</button>
+            <a className="button_toggle"  onClick={() => { changeMode() }}>{isSignUp ? 'Sign in instead' : 'Create Account'}</a>
           </div>
 
         </form>

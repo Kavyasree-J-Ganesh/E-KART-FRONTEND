@@ -38,7 +38,6 @@ const Homepage = props => {
     }
     return (
         <div className="homepage">
-            <Header />
             <Category/>
             <div className="homepage_products">
                  {product?.products.map(product=> <Product product={product}/>)}

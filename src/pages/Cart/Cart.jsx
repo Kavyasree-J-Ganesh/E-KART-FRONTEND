@@ -44,7 +44,6 @@ const Cart = (props) => {
 
     return (
         <div className="product_cart" >
-            <Header />
             {cart && cart.product && <div className="cart">
                 {cart.product.map(product => (
                     <div className="cart_item">
