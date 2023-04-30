@@ -6,6 +6,7 @@ import "./App.css";
 import Signup from "./pages/Signup/Signup";
 import Homepage from "./pages/Homepage/Homepage";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import Checkout from "./pages/Checkout/Checkout";
 import Cart from "./pages/Cart/Cart";
 import AddProduct from "./components/AddProduct/AddProduct";
 import Wishlist from "./pages/Wishlist/Wishlist";
@@ -29,25 +30,28 @@ function App() {
 
   return (
     <React.Fragment>
-      <ToastContainer />
-      <BrowserRouter>
-        {["/home-new", '/login', "/home", "/cart"].includes(window.location.pathname) ? <Header /> : null}
-        <BasicModal open={auth.isLoginRequired} close={onCancel}>
-          <Signup />
-        </BasicModal>
-        <Routes>
-          <Route path="/" element={<Intro />} />
-          <Route path="/home-new" element={<HomeNew />} />
-          <Route path="/login" element={<Signup />} />
-          <Route path="/home" element={<Homepage />} />
-          <Route path="/home/:id" element={<ProductDetails />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/address" element={<AddressDetails />} />
-          <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/payment" element={<Strip_Payment />} />
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <ToastContainer />
+        <BrowserRouter>
+          {["/home-new", '/login', "/home", "/cart"].includes(window.location.pathname) ? <Header /> : null}
+          <BasicModal open={auth.isLoginRequired} close={onCancel}>
+            <Signup />
+          </BasicModal>
+          <Routes>
+            <Route path="/" element={<Intro />} />
+            <Route path="/home-new" element={<HomeNew />} />
+            <Route path="/login" element={<Signup />} />
+            <Route path="/home" element={<Homepage />} />
+            <Route path="/home/:id" element={<ProductDetails />} />
+            <Route path="/cart" element={<Cart1 />} />
+            <Route path="/address" element={<AddressDetails />} />
+            <Route path="/add-product" element={<AddProduct />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/payment" element={<Strip_Payment />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </React.Fragment>
 
 

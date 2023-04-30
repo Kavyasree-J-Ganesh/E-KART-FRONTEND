@@ -5,6 +5,8 @@ import "./Wishlist.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
 import download from "../../assest/download.jpg";
+import { addToCart, removeFromCart } from "../../Services/cartService";
+
 import {
   getWishlist,
   addToWishlist,
@@ -22,6 +24,10 @@ function Wishlist(props) {
   useEffect(() => {
     getCartItems();
   }, []);
+
+
+  const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
+
 
   async function getCartItems() {
     try {
@@ -102,9 +108,19 @@ function Wishlist(props) {
                     by {product.manufacturer} {/* by Shashank{" "} */}
                   </div>
 
-                  <div className="price111cart">RS {product.realPrice}</div>
+                  <div className="price111cart">RS {product.discountedPrice}</div>
                   {/* <div className="price111cart">RS 300</div> */}
                 </div>
+                <button
+                  className="product_buy_wishlist"
+                  onClick={
+                    isAddedToWishlist
+                      ? removeFromCartList
+                      : addToCartList
+                  }
+                >
+                  {isAddedToWishlist ? "Remove" : "Add To Cart"}
+                </button>
               </div>
             ))}
 

@@ -7,13 +7,17 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { addToCart, getCart, removeFromCart } from "../../Services/cartService";
 import { useDispatch, useSelector } from "react-redux";
 import "./Cart1.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  addToWishlist,
+  removeFromWishList,
+} from "./../../Services/WishlistService";
 
 function Cart1(props) {
   const [totalPrice, setTotalPrice] = useState(0);
-
+  let { id } = useParams();
   const cart = useSelector((state) => state.cart);
-
+  const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,6 +35,25 @@ function Cart1(props) {
     }
   }, [cart]);
 
+
+  const handleAddToWishList = () => {
+    addToWishlist(id)
+      .then((res) => {
+        setIsAddedToWishlist(true);
+        console.log("response", res);
+      })
+      .catch((err) => console.error("error", err));
+  };
+
+  const handleRemoveFromWishList = () => {
+    removeFromWishList(id)
+      .then((res) => {
+        setIsAddedToWishlist(false);
+        console.log("response", res);
+      })
+      .catch((err) => console.error("error", err));
+  };
+
   async function getCartItems() {
     try {
       const cart = await getCart();
@@ -44,7 +67,6 @@ function Cart1(props) {
     try {
       await addToCart(id);
       getCartItems();
-      alert(" product added");
     } catch (e) {
       console.log(e);
     }
@@ -85,7 +107,7 @@ function Cart1(props) {
                     <img
                       src={product.image}
                       height={"85px"}
-                      width={"60px"}
+                      width={"80px"}
                     ></img>
                   </div>
                   <div className="productrightcontntmtcrt">
@@ -101,18 +123,19 @@ function Cart1(props) {
                     >
                       by {product.manufacturer}{" "}
                     </div>
-
                     <div className="price111cart">
-                      RS {product.discountedPrice}
+                      {/* RS {product.discountedPrice} */}
+                      <span className="cart_item_price">{`Rs. ${product.realPrice}`}</span>
+                      <span className="cart_item_discount_price">{`Rs. ${product.discountedPrice}`}</span>
                     </div>
-                    <div className="buttonOperationsMycrt">
+                    {/* <div className="buttonOperationsMycrt">
                       <RemoveCircleOutlineIcon
                         // onClick={() => reduce(item.productId, item)}
                         onClick={() => addToCartList(product.productId)}
                         sx={{ height: "24px" }}
                       />
                       {/* <div className="counterFormycrtt">{item.quantity}</div> */}
-                      <div className="counterFormycrtt">{product.quantity}</div>
+                    {/* <div className="counterFormycrtt">{product.quantity}</div>
                       <AddCircleOutlineIcon
                         onClick={() => removeFromCartList(product.productId)}
                         sx={{ height: "24px" }}
@@ -125,26 +148,42 @@ function Cart1(props) {
                       >
                         Remove
                       </Button>
+                    </div> */}
+                    <div className="cart_add_or_remove">
+                      <button className="cart_add" onClick={() => addToCartList(product.productId)}>+</button>
+                      <div className="cart_count">{product.quantity}</div>
+                      <button className="cart_remove" onClick={() => removeFromCartList(product.productId)}>-</button>
+                      {/* <a style={{ fontSize: "12px" }} className="cart_remove_all">Remove</a> */}
+                      <button
+                        className="product_buy_wishlist"
+                        onClick={
+                          isAddedToWishlist
+                            ? handleRemoveFromWishList
+                            : handleAddToWishList
+                        }
+                      >
+                        {isAddedToWishlist ? "Remove" : "WISHLIST"}
+                      </button>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           )}
-          {cart && cart.product && (
-            <div className="cart_place">
-              {totalPrice ? <span>Total: {totalPrice}</span> : ""}
-              <button
-                className="cart_place_order"
-                onClick={() => {
-                  navigate("/address");
-                }}
-              >
-                PLACE ORDER
-              </button>
-            </div>
-          )}
         </div>
+        {cart && cart.product && (
+          <div className="cart_place">
+            {totalPrice ? <span>Total: {totalPrice}</span> : ""}
+            <button
+              className="cart_place_order"
+              onClick={() => {
+                navigate("/address");
+              }}
+            >
+              PLACE ORDER
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
