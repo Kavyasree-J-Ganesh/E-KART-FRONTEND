@@ -1,0 +1,12 @@
+.cart_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    grid-gap: 0;
+    flex:1;
+}
+
+@media screen and (min-width:1480px) {
+    .cart_list{
+        grid-template-columns: repeat(auto-fit,25%);
+    }
+}

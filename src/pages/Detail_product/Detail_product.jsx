@@ -29,7 +29,6 @@ function Detail_product() {
 
     return (
         <div>
-            <Header />
             <div className='allMain'>
                 <div className="main-container">
                     <div className="left-side">

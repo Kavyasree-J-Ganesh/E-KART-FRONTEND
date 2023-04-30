@@ -1,21 +1,36 @@
 const initialState = {
-	isAdmin: false
-	
+	isAdmin: false,
+	isLogin: false,
+	isLoginRequired: false
 };
 
 export const authReducer = (state = initialState, action) => {
 	console.log(action)
 	switch (action.type) {
-        case 'LOGIN':
+		case 'LOGIN':
 			return {
 				...state,
-				isAdmin : action.payload.isAdmin,
+				isAdmin: action.payload.isAdmin,
+				isLogin: true,
+				isLoginRequired:false
 			};
 		case 'LOGOUT':
 			return {
 				...state,
-				isAdmin : false,
+				isAdmin: false,
+				isLogin: false,
+				isLoginRequired:false
 			};
+		case 'SET_LOGIN_REQUIRED':
+			return {
+				...state,
+				isLoginRequired: true
+			}
+		case 'UNSET_LOGIN_REQUIRED':
+				return {
+					...state,
+					isLoginRequired: false
+				}
 		default:
 			return state;
 	}

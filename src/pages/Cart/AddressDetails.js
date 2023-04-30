@@ -32,7 +32,6 @@ function AddressDetails() {
   }
   return (
     <div>
-      <Header />
       <Category />
       AddressDetails
       <StripeCheckout

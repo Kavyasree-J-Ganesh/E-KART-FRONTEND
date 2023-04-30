@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #423d3d;
 }
 
 code {
@@ -29,10 +30,8 @@ code {
 }
 .button_info {
   padding: 7px 25px;
-  background-color: #76b029;
-  color: white;
+  background-color: #ecb56e;
   border: none;
-  border-radius: 4px;
 }
 
 button, a{

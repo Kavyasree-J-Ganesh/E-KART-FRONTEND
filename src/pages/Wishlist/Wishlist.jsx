@@ -53,7 +53,6 @@ function Wishlist(props) {
 
   return (
     <div>
-      <Header />
       <div className="cartMainBox">
         <div className="page-dir" style={{ color: "#9D9D9D" }}>
           Home /

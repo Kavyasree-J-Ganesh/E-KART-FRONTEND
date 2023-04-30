@@ -61,7 +61,6 @@ function Cart1(props) {
 
   return (
     <div>
-      <Header />
       <div className="cartMainBox">
         <div className="cartHeadNames">
           <div className="page-dir" style={{ color: "#9D9D9D" }}>

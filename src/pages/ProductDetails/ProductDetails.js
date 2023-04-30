@@ -75,7 +75,6 @@ const ProductDetails = (props) => {
 
     return (
         <div className="prodct" >
-            <Header />
 
             <div className="product_box">
             {product && (<div className="product_detail">
