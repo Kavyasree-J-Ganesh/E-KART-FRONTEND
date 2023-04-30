@@ -124,11 +124,10 @@ function Cart1(props) {
                     >
                       by {product.manufacturer}{" "}
                     </div>
-
                     <div className="price111cart">
                       {/* RS {product.discountedPrice} */}
-                      <span className="cart_item_price">{`Rs. ${product.discountedPrice}`}</span>
-                      <span className="cart_item_discount_price">{`Rs. ${product.realPrice}`}</span>
+                      <span className="cart_item_price">{`Rs. ${product.realPrice}`}</span>
+                      <span className="cart_item_discount_price">{`Rs. ${product.discountedPrice}`}</span>
                     </div>
                     {/* <div className="buttonOperationsMycrt">
                       <RemoveCircleOutlineIcon

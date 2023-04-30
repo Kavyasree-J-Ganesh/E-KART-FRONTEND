@@ -14,6 +14,7 @@ import Cart1 from "./pages/Cart/Cart1";
 import Strip_Payment from "./Strip_Payment/Strip_Payment";
 import AddressDetails from "./pages/Cart/AddressDetails";
 import './App.css';
+import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/payment" element={<Strip_Payment />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
     </Provider>
