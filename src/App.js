@@ -18,7 +18,8 @@ import HomeNew from "./pages/HomeNew/HomeNew";
 import Intro from "./pages/Intro/Intro";
 import Header from "./components/Header/Header";
 import BasicModal from "./components/Modal/Modal";
-import { useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import store from "./redux/store";
 
 function App() {
   const auth = useSelector(state => state.auth)
@@ -43,7 +44,7 @@ function App() {
             <Route path="/login" element={<Signup />} />
             <Route path="/home" element={<Homepage />} />
             <Route path="/home/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart1 />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/address" element={<AddressDetails />} />
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/wishlist" element={<Wishlist />} />
