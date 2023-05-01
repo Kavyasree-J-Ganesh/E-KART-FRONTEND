@@ -1,0 +1,39 @@
+.sale_analysis{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sale_analysis >*{
+    width: 50%;
+    border-right: 1px solid rgb(137, 130, 130);
+}
+
+.sale_analysis_chart{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sale_analysis_chart >*{
+    width: 100%;
+}
+
+.top_selled_cat{
+    padding: 0 40px;
+}
+
+.top_selled_cat > *:not(:last-child){
+    margin-bottom: 20px;
+}
+
+.sale_analysis_chart_heading, .sale_analysis_products_heading{
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+@media screen and (max-width: 900px){
+    .sale_analysis >*{
+        width: 100%;
+        border-right: 1px solid rgb(137, 130, 130);
+    }
+}

@@ -20,6 +20,7 @@
 
 .product_image{
     width:40%;
+    max-height: 400px;
 }
 
 .product_image img {

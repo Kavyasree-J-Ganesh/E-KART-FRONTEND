@@ -21,6 +21,7 @@ const CatoryNew = (props)=>{
 
     const showProducts = (category)=>{
         if(isAuthenticationRequired()){
+            dispatch({type:"SET_SELECTED_CATEGORY", payload:{category}})
             return true
         }
         dispatch({type:"SET_SELECTED_CATEGORY", payload:{category}})

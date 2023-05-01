@@ -22,6 +22,7 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./redux/store";
 import { useState } from "react";
 import { useEffect } from "react";
+import SaleAnalysis from "./pages/SaleAnalysis/SaleAnalysis";
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
 
   useEffect(()=>{
      const auth = localStorage.getItem("auth");
-     const isAdmin = localStorage.getItem("isAdmin") == true
+     const isAdmin = localStorage.getItem("isAdmin") == "true"
      if(auth){
       dispatch({type: "LOGIN",payload:{isAdmin}})
      }
@@ -66,6 +67,7 @@ function App() {
             <Route path="/wishlist" element={<React.Fragment><Header/><Wishlist /></React.Fragment>}/>
             <Route path="/payment" element={<React.Fragment><Header/><Strip_Payment /></React.Fragment>} />
             <Route path="/checkout" element={<React.Fragment><Header/><Checkout /></React.Fragment>} />
+            <Route path="/sale_analysis" element={<React.Fragment><Header/><SaleAnalysis /></React.Fragment>} />
           </Routes>
         </BrowserRouter>
       </Provider>
