@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
+import AddIcon from '@mui/icons-material/Add';
 import "./Header.css"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +13,6 @@ import Modal from "../Modal/Modal";
 import { useState } from "react";
 import AddProduct from "../AddProduct/AddProduct";
 import { toaster } from "../../utils/toast";
-import { getCategories } from "../../Services/ProductService";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -69,6 +69,11 @@ const Header = props => {
 
     const [isAddProduct, setIsAddProduct] = useState(false)
 
+    const navigateToHome = ()=>{
+       if(auth.isLogin){
+        navigate("/home")
+       }
+    }
     
     const isAuthenticationRequired = ()=>{
         if(!auth.isLogin) {
@@ -112,9 +117,9 @@ const Header = props => {
 
         <div className="header">
             <Modal open={isAddProduct} close={() => setIsAddProduct(prev => !prev)} >
-                <AddProduct />
+                <AddProduct close={() => setIsAddProduct(prev => !prev)}/>
             </Modal>
-            <h3>E-KART</h3>
+            <h3 style={{cursor:"pointer"}} onClick={navigateToHome}>E-KART</h3>
             <div className="header_search">
                 <Search>
                     <SearchIconWrapper>
@@ -129,12 +134,16 @@ const Header = props => {
 
             <div className="header_actions">
                 {!auth.isAdmin && <div className="header_icons" onClick={wishlist}>
-                    <FavoriteBorderOutlinedIcon sx={{ fontSize: 25 }} />
+                    <FavoriteBorderOutlinedIcon title="add to wishlist" sx={{ fontSize: 25 }} />
                 </div>}
 
                 {!auth.isAdmin && <div className="header_icons" onClick={cart}>
                     <ShoppingBagOutlinedIcon  color="white" sx={{ fontSize: 25 }} />
                     <span className="cart_quantity">1</span>
+                </div>}
+
+                {auth.isAdmin && <div className="header_icons" onClick={()=> setIsAddProduct(prev=> !prev)}>
+                    Add Product<AddIcon sx={{ fontSize: 25 }} />
                 </div>}
 
                 <div className="header_icons" onClick={logout}>

@@ -49,7 +49,6 @@
 
 .header_icons{
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -73,6 +72,8 @@
 .header_icons p{
     color: white;
 }
+
+
 
 .button_info {
     font-weight: 600;

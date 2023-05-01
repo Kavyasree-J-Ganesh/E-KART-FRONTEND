@@ -91,35 +91,46 @@ function SignUp() {
     let mobileNumberValid = !isSignUp || mobileRegex.test(signupObj.phonenumber)
    
 
-    console.log(signupObj)
-
     if (!isEmailValid) {
       setValidityObj(prev => { return { ...prev, isEmailInvalid: true, emailHelper: "Invalid email" } })
+      return;
     } else {
       setValidityObj(prev => { return { ...prev, isEmailInvalid: false, emailHelper: "" } })
     }
 
     if (!passwordValid) {
       setValidityObj(prev => { return { ...prev, isPasswordInvalid: true, passwordHelper: "Invalid password" } })
+      if(isSignUp) return;
+      
     } else {
       setValidityObj(prev => { return { ...prev, isPasswordInvalid: false, passwordHelper: "" } })
     }
 
     if (!firstnameValid) {
       setValidityObj(prev => { return { ...prev, isFirstNameInvalid: true, firstNameHelper: "Invalid firstname" } })
+      if(isSignUp) return;
     } else {
       setValidityObj(prev => { return { ...prev, isFirstNameInvalid: false, firstNameHelper: "" } })
     }
 
     if (!mobileNumberValid) {
       setValidityObj(prev => { return { ...prev, isMobileInvalid: true, mobileHelper: "Invalid mobile number" } })
+      if(isSignUp) return;
     } else {
       setValidityObj(prev => { return { ...prev, isMobileInvalid: false, mobileHelper: "" } })
+    }
+
+    if(isSeller && signupObj.companyname == ""){
+      setValidityObj(prev => { return { ...prev, isCompanyNameInvalid: true, companyNameHelper: "Invalid company name" } })
+      if(isSignUp) return;
+    } else {
+      setValidityObj(prev => { return { ...prev, isCompanyNameInvalid: false, companyNameHelper: "" } })
     }
 
 
     if (passwordValid && signupObj.password != signupObj.confirmpassword) {
       setValidityObj(prev => { return { ...prev, isConfirmPasswordInvalid: true, confirmPasswordHelper: "Password does not match" } })
+      if(isSignUp) return;
     } else {
 
       setValidityObj(prev => { return { ...prev, isConfirmPasswordInvalid: false, confirmPasswordHelper: "" } })
@@ -136,7 +147,7 @@ function SignUp() {
           localStorage.setItem("auth", token)
           localStorage.setItem("isAdmin", result.data.isAdmin)
           dispatch({type: "LOGIN", payload: result.data})
-          setTimeout(()=>navigate("./home"), 100)
+          setTimeout(()=>navigate(!result.data.isAdmin? "./home": "./sale_analysis"), 100)
       }
      toaster("info", result.data.message )
      if(isSignUp){

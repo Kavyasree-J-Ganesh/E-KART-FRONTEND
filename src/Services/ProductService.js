@@ -27,3 +27,11 @@ export const getCategories = async()=>{
     const result = await axios.get(`http://localhost:6060/api/v1/category`, headerConfig)
     return result
 }
+
+export const postProduct = async (body) => {
+    const headerConfig = {
+        headers: { Authorization: `bearer ${localStorage.getItem("auth")}` },
+      };
+    const result = await axios.post(`http://localhost:6060/api/v1/product`,body, headerConfig)
+    return result
+}
