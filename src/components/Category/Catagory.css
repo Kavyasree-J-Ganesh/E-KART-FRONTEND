@@ -1,26 +1,31 @@
 .catagories {
     display: flex;
     align-items: center;
+    padding: 10px 2% 0px 2%;
     justify-content: space-between;
-    padding: 10px 2%;
     margin-bottom: 1rem;
     box-shadow: rgb(179, 177, 177) ;
     border: 2px solid #f0e9e9;
     position:sticky;
-    color: #76b029;
     left:0;
     background-color:white;
     cursor: pointer;
     font-size: .8rem;
+    flex-wrap: wrap;
 }
 
 .catagory {
-    color: #76b029;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width: 600px) {
     .catagory{
         font-size: .6rem;
+    }
+
+    .catagories {
+        justify-content: start;
     }
 }
 

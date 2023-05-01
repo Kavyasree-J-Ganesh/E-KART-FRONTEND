@@ -136,7 +136,7 @@ function SignUp() {
           localStorage.setItem("auth", token)
           localStorage.setItem("isAdmin", result.data.isAdmin)
           dispatch({type: "LOGIN", payload: result.data})
-          navigate("./home")
+          setTimeout(()=>navigate("./home"), 100)
       }
      toaster("info", result.data.message )
      if(isSignUp){

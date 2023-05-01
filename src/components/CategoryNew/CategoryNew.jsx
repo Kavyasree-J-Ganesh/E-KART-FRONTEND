@@ -2,9 +2,11 @@ import { useState } from "react"
 import classes from "./CategoryNew.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { toaster } from "../../utils/toast";
+import { useNavigate } from "react-router-dom";
 
 const CatoryNew = (props)=>{
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const auth = useSelector(state=> state.auth)
 
     const isAuthenticationRequired = ()=>{
@@ -17,14 +19,16 @@ const CatoryNew = (props)=>{
         return false
     }
 
-    const showProducts = ()=>{
+    const showProducts = (category)=>{
         if(isAuthenticationRequired()){
             return true
         }
+        dispatch({type:"SET_SELECTED_CATEGORY", payload:{category}})
+        navigate("/home")
     }
 
    return (
-    <div className={classes.category} onClick={showProducts}>
+    <div className={classes.category} onClick={()=>showProducts(props.category.name)}>
         <img style={{width:"100%", height:"45vh"}}
             src={props.category.image} 
             alt={props.category.name}/>

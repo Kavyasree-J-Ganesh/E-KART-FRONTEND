@@ -20,36 +20,52 @@ import Header from "./components/Header/Header";
 import BasicModal from "./components/Modal/Modal";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./redux/store";
+import { useState } from "react";
+import { useEffect } from "react";
+
 
 function App() {
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const [path,setPath] = useState("/")
+
+  useEffect(()=>{
+     const auth = localStorage.getItem("auth");
+     const isAdmin = localStorage.getItem("isAdmin") == true
+     if(auth){
+      dispatch({type: "LOGIN",payload:{isAdmin}})
+     }
+  },[])
 
   const onCancel = ()=>{
     dispatch({type:"UNSET_LOGIN_REQUIRED"})
   }
+
+  window.addEventListener('popstate', function (event) {
+    // Log the state data to the console
+    setPath(window.location.pathname)
+  });
 
   return (
     <React.Fragment>
       <Provider store={store}>
         <ToastContainer />
         <BrowserRouter>
-          {["/home-new", '/login', "/home", "/cart"].includes(window.location.pathname) ? <Header /> : null}
           <BasicModal open={auth.isLoginRequired} close={onCancel}>
             <Signup />
           </BasicModal>
           <Routes>
             <Route path="/" element={<Intro />} />
-            <Route path="/home-new" element={<HomeNew />} />
+            <Route path="/home-new" element={<React.Fragment><Header/><HomeNew /></React.Fragment>} />
             <Route path="/login" element={<Signup />} />
-            <Route path="/home" element={<Homepage />} />
-            <Route path="/home/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/address" element={<AddressDetails />} />
-            <Route path="/add-product" element={<AddProduct />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/payment" element={<Strip_Payment />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/home" element={<React.Fragment><Header/><Homepage /></React.Fragment>} />
+            <Route path="/home/:id" element={<React.Fragment><Header/><ProductDetails /></React.Fragment>} />
+            <Route path="/cart" element={<React.Fragment><Header/><Cart /></React.Fragment>}/>
+            <Route path="/address" element={<React.Fragment><Header/><AddressDetails /></React.Fragment>} />
+            <Route path="/add-product" element={<React.Fragment><Header/><AddProduct /></React.Fragment>} />
+            <Route path="/wishlist" element={<React.Fragment><Header/><Wishlist /></React.Fragment>}/>
+            <Route path="/payment" element={<React.Fragment><Header/><Strip_Payment /></React.Fragment>} />
+            <Route path="/checkout" element={<React.Fragment><Header/><Checkout /></React.Fragment>} />
           </Routes>
         </BrowserRouter>
       </Provider>
