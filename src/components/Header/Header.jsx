@@ -12,6 +12,7 @@ import Modal from "../Modal/Modal";
 import { useState } from "react";
 import AddProduct from "../AddProduct/AddProduct";
 import { toaster } from "../../utils/toast";
+import { getCategories } from "../../Services/ProductService";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -68,6 +69,7 @@ const Header = props => {
 
     const [isAddProduct, setIsAddProduct] = useState(false)
 
+    
     const isAuthenticationRequired = ()=>{
         if(!auth.isLogin) {
            toaster("info", "login/signup to continue")
@@ -81,25 +83,27 @@ const Header = props => {
     const logout = () => {
         navigate("/")
         localStorage.removeItem("auth")
+        localStorage.removeItem("isAdmin")
+        dispatch({type:"LOGOUT"})
     }
 
     const cart = () => {
         if(isAuthenticationRequired()){
-            return
+            return true
         }
         navigate("/cart")
     }
 
     const wishlist = () => {
         if(isAuthenticationRequired()){
-            return
+            return true
         }
         navigate("/wishlist")
     }
 
     const user = () => {
         if(isAuthenticationRequired()){
-            return
+            return true
         }
         navigate("/user")
     }

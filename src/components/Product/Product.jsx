@@ -15,7 +15,7 @@ const Product = (props) => {
             </div>
             <div className="product_details">
                 <h6 className="product_details_title">{props.product.title}</h6>
-                <span className="product_details_description"> {props.product.description}</span>
+                {/* <span className="product_details_description"> {props.product.description}</span> */}
                 {props.product.rating != "0" && <div className="product_review">
                    <span className="product_review_value">
                     {props.product.rating} <StarIcon sx={{fontSize: 10, color: 'white'}} />

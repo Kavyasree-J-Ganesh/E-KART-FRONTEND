@@ -30,7 +30,7 @@ const Homepage = props => {
 
     async function getProductList() {
         try {
-            const products = await getProducts();
+            const products = await getProducts(product.selectedCategory);
             dispatch({type:"SET_PRODUCTS", payload: products.data})
         } catch (e) {
             console.log(e)
