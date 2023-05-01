@@ -28,18 +28,18 @@ import SaleAnalysis from "./pages/SaleAnalysis/SaleAnalysis";
 function App() {
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
-  const [path,setPath] = useState("/")
+  const [path, setPath] = useState("/")
 
-  useEffect(()=>{
-     const auth = localStorage.getItem("auth");
-     const isAdmin = localStorage.getItem("isAdmin") == "true"
-     if(auth){
-      dispatch({type: "LOGIN",payload:{isAdmin}})
-     }
-  },[])
+  useEffect(() => {
+    const auth = localStorage.getItem("auth");
+    const isAdmin = localStorage.getItem("isAdmin") == "true"
+    if (auth) {
+      dispatch({ type: "LOGIN", payload: { isAdmin } })
+    }
+  }, [])
 
-  const onCancel = ()=>{
-    dispatch({type:"UNSET_LOGIN_REQUIRED"})
+  const onCancel = () => {
+    dispatch({ type: "UNSET_LOGIN_REQUIRED" })
   }
 
   window.addEventListener('popstate', function (event) {
@@ -57,17 +57,17 @@ function App() {
           </BasicModal>
           <Routes>
             <Route path="/" element={<Intro />} />
-            <Route path="/home-new" element={<React.Fragment><Header/><HomeNew /></React.Fragment>} />
+            <Route path="/home-new" element={<React.Fragment><Header /><HomeNew /></React.Fragment>} />
             <Route path="/login" element={<Signup />} />
-            <Route path="/home" element={<React.Fragment><Header/><Homepage /></React.Fragment>} />
-            <Route path="/home/:id" element={<React.Fragment><Header/><ProductDetails /></React.Fragment>} />
-            <Route path="/cart" element={<React.Fragment><Header/><Cart /></React.Fragment>}/>
-            <Route path="/address" element={<React.Fragment><Header/><AddressDetails /></React.Fragment>} />
-            <Route path="/add-product" element={<React.Fragment><Header/><AddProduct /></React.Fragment>} />
-            <Route path="/wishlist" element={<React.Fragment><Header/><Wishlist /></React.Fragment>}/>
-            <Route path="/payment" element={<React.Fragment><Header/><Strip_Payment /></React.Fragment>} />
-            <Route path="/checkout" element={<React.Fragment><Header/><Checkout /></React.Fragment>} />
-            <Route path="/sale_analysis" element={<React.Fragment><Header/><SaleAnalysis /></React.Fragment>} />
+            <Route path="/home" element={<React.Fragment><Header /><Homepage /></React.Fragment>} />
+            <Route path="/home/:id" element={<React.Fragment><Header /><ProductDetails /></React.Fragment>} />
+            <Route path="/cart" element={<React.Fragment><Header /><Cart /></React.Fragment>} />
+            <Route path="/address" element={<React.Fragment><Header /><AddressDetails /></React.Fragment>} />
+            <Route path="/add-product" element={<React.Fragment><Header /><AddProduct /></React.Fragment>} />
+            <Route path="/wishlist" element={<React.Fragment><Header /><Wishlist /></React.Fragment>} />
+            <Route path="/payment" element={<React.Fragment><Header /><Strip_Payment /></React.Fragment>} />
+            <Route path="/checkout" element={<React.Fragment><Header /><Checkout /></React.Fragment>} />
+            <Route path="/sale_analysis" element={<React.Fragment><Header /><SaleAnalysis /></React.Fragment>} />
           </Routes>
         </BrowserRouter>
       </Provider>
