@@ -1,17 +1,35 @@
-.category{
+.category {
     position: relative;
-    opacity:.5;
+    opacity: .5;
     cursor: pointer;
+    height: 25em;
+    overflow: hidden;
+    transition: all 1.5s;
 }
 
-.category:hover{
-    opacity: 1;
-}
 
-
-.category_name{
+.category img {
     position: absolute;
-    left:10%;
+    height: 100%;
+    width: 100%;
+    transition: all 1.5s;
+}
+
+.category:hover {
+    opacity: 1;
+    transition: all 1.5s;
+}
+
+.category:hover img {
+    height: 200%;
+    width: 200%;
+    transition: all 0.5s;
+}
+
+
+.category_name {
+    position: absolute;
+    left: 10%;
     top: 15%;
     color: white;
     font-size: 20px;
@@ -19,7 +37,7 @@
 }
 
 @media screen and (min-width:1480px) {
-    .category{
+    .category {
         min-width: 25%;
-    } 
+    }
 }
