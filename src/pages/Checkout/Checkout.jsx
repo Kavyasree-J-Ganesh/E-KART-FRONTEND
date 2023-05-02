@@ -19,7 +19,7 @@ function Checkout() {
                     <Button
                         size="small"
                         variant="contained"
-                        style={{ marginTop: "5px" }}
+                        style={{ marginTop: "5px", marginLeft: "60px" }}
                         onClick={() => navigate("/home")}
                     >
                         Continue Shopping
