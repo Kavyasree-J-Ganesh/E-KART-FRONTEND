@@ -35,3 +35,11 @@ export const postProduct = async (body) => {
     const result = await axios.post(`http://localhost:6060/api/v1/product`,body, headerConfig)
     return result
 }
+
+export const editProduct = async (id,body) => {
+    const headerConfig = {
+        headers: { Authorization: `bearer ${localStorage.getItem("auth")}` },
+      };
+    const result = await axios.put(`http://localhost:6060/api/v1/product/${id}`,body, headerConfig)
+    return result
+}

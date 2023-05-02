@@ -47,6 +47,11 @@
     margin-right: 30px;
 }
 
+.header_login{
+    padding: 0 20px;
+    background-color: white !important;
+}
+
 .header_icons{
     display: flex;
     align-items: center;
@@ -108,4 +113,6 @@
         order:1;
         margin-top: 10px;
     }
+
+    
 }

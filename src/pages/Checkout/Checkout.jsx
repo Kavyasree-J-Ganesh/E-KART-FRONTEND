@@ -9,7 +9,6 @@ function Checkout() {
     const navigate = useNavigate();
     return (
         <div>
-            <Header />
             <div className="main-placed">
                 <img src={PlacedImg} alt="placed-Img" />
                 <div>

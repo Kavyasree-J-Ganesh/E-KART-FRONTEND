@@ -279,7 +279,6 @@ function AddressDetails() {
 
     return (
         <div>
-            <Header />
             <div className="address-details-container">
                 <h2>Enter your address details</h2>
                 <form>
