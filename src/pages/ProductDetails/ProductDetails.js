@@ -69,13 +69,15 @@ const ProductDetails = (props) => {
     const addToCartList = async () => {
         if (currentProduct?.quantity) {
             navigate("/cart")
+        } else {
+            try {
+                await addToCart(id);
+                getCartItems();
+            } catch (e) {
+                console.log(e)
+            }
         }
-        try {
-            await addToCart(id);
-            getCartItems();
-        } catch (e) {
-            console.log(e)
-        }
+       
     }
 
     const removeFromCartList = async () => {
@@ -139,8 +141,8 @@ const ProductDetails = (props) => {
                                 <span className="product_review_count">{product.reviewcount}</span>
                             </div>}
                             <div class="product_price">
-                                <span className="product_details_price">{`Rs. ${product.realPrice}`}</span>
-                                <span className="product_details_discount_price">{`Rs. ${product.discountedPrice}`}</span>
+                                <span className="product_details_price">{`Rs. ${product.discountedPrice}`}</span>
+                                <span className="product_details_discount_price">{`Rs. ${product.realPrice}`}</span>
                             </div>
                         </div>
                         <div className="product_info">

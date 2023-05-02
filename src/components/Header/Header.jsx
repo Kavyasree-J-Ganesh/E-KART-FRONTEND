@@ -69,17 +69,17 @@ const Header = props => {
 
     const [isAddProduct, setIsAddProduct] = useState(false)
 
-    const navigateToHome = ()=>{
-       if(auth.isLogin){
-        navigate("/home")
-       }
+    const navigateToHome = () => {
+        if (auth.isLogin) {
+            navigate("/home")
+        }
     }
-    
-    const isAuthenticationRequired = ()=>{
-        if(!auth.isLogin) {
-           toaster("info", "login/signup to continue")
-           dispatch({type:"SET_LOGIN_REQUIRED"})
-           return true
+
+    const isAuthenticationRequired = () => {
+        if (!auth.isLogin) {
+            toaster("info", "login/signup to continue")
+            dispatch({ type: "SET_LOGIN_REQUIRED" })
+            return true
         }
 
         return false
@@ -89,25 +89,25 @@ const Header = props => {
         navigate("/")
         localStorage.removeItem("auth")
         localStorage.removeItem("isAdmin")
-        dispatch({type:"LOGOUT"})
+        dispatch({ type: "LOGOUT" })
     }
 
     const cart = () => {
-        if(isAuthenticationRequired()){
+        if (isAuthenticationRequired()) {
             return true
         }
         navigate("/cart")
     }
 
     const wishlist = () => {
-        if(isAuthenticationRequired()){
+        if (isAuthenticationRequired()) {
             return true
         }
         navigate("/wishlist")
     }
 
     const user = () => {
-        if(isAuthenticationRequired()){
+        if (isAuthenticationRequired()) {
             return true
         }
         navigate("/user")
@@ -117,9 +117,9 @@ const Header = props => {
 
         <div className="header">
             <Modal open={isAddProduct} close={() => setIsAddProduct(prev => !prev)} >
-                <AddProduct close={() => setIsAddProduct(prev => !prev)}/>
+                <AddProduct isNew={true} close={() => setIsAddProduct(prev => !prev)} />
             </Modal>
-            <h3 style={{cursor:"pointer"}} onClick={navigateToHome}>E-KART</h3>
+            <h3 style={{ cursor: "pointer" }} onClick={navigateToHome}>E-KART</h3>
             <div className="header_search">
                 <Search>
                     <SearchIconWrapper>
@@ -133,22 +133,24 @@ const Header = props => {
             </div>
 
             <div className="header_actions">
+                {!auth.isLogin && <div className="header_login" onClick={() => isAuthenticationRequired()}>
+                    Login
+                </div>}
                 {!auth.isAdmin && <div className="header_icons" onClick={wishlist}>
                     <FavoriteBorderOutlinedIcon title="add to wishlist" sx={{ fontSize: 25 }} />
                 </div>}
-
                 {!auth.isAdmin && <div className="header_icons" onClick={cart}>
-                    <ShoppingBagOutlinedIcon  color="white" sx={{ fontSize: 25 }} />
+                    <ShoppingBagOutlinedIcon color="white" sx={{ fontSize: 25 }} />
                     <span className="cart_quantity">1</span>
                 </div>}
 
-                {auth.isAdmin && <div className="header_icons" onClick={()=> setIsAddProduct(prev=> !prev)}>
+                {auth.isAdmin && <div className="header_icons" onClick={() => setIsAddProduct(prev => !prev)}>
                     Add Product<AddIcon sx={{ fontSize: 25 }} />
                 </div>}
 
-                <div className="header_icons" onClick={logout}>
+                {auth.isLogin && <div className="header_icons" onClick={logout}>
                     <PowerSettingsNewOutlinedIcon sx={{ fontSize: 25 }} />
-                </div>
+                </div>}
             </div>
 
         </div>
