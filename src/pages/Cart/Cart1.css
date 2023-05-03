@@ -54,7 +54,7 @@
 
 .productsArrayMyArt {
     display: flex;
-    height: 140px;
+    height: 115px;
     width: 100%;
     margin-bottom: 10px;
     /* border: 1px solid #f5f5f5; */
@@ -79,8 +79,8 @@
     /* border: 1px solid red; */
     margin-top: 0;
     margin-right: auto;
-    font-size: 23px;
-    font-weight: 460;
+    font-size: 20px;
+    font-weight: 400;
     text-align: left;
     display: flex;
     justify-content: space-between;
@@ -140,10 +140,38 @@
     margin-left: 23px;
 }
 
-.cart_add_or_remove {
-    width: 100%;
+.cart_add_and_remove {
+    width: 60%;
     display: flex;
     align-items: center;
     padding: 0;
-    margin-top: 35px;
+    margin-top: 5px;
+}
+
+
+.cart_count {
+    font-size: 10px;
+}
+
+/* .cart_remove {
+    font-size: 10px;
+} */
+
+.product_buy_wishlist {
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+
+.wishlist_new {
+    height: 10px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.cart_count_new {
+    margin-left: 5px;
+    margin-right: 5px;
 }

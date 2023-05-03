@@ -12,6 +12,10 @@ import {
   addToWishlist,
   removeFromWishList,
 } from "./../../Services/WishlistService";
+import AddIcon from '@mui/icons-material/Add';
+
+
+
 
 function Cart1(props) {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -149,13 +153,13 @@ function Cart1(props) {
                         Remove
                       </Button>
                     </div> */}
-                    <div className="cart_add_or_remove">
-                      <button className="cart_add" onClick={() => addToCartList(product.productId)}>+</button>
-                      <div className="cart_count">{product.quantity}</div>
-                      <button className="cart_remove" onClick={() => removeFromCartList(product.productId)}>-</button>
+                    <div className="cart_add_and_remove">
+                      <AddCircleOutlineIcon className="cart_add_new" onClick={() => addToCartList(product.productId)}>+</AddCircleOutlineIcon>
+                      <div className="cart_count_new">{product.quantity}</div>
+                      <RemoveCircleOutlineIcon className="cart_remove_new" onClick={() => removeFromCartList(product.productId)}>-</RemoveCircleOutlineIcon>
                       {/* <a style={{ fontSize: "12px" }} className="cart_remove_all">Remove</a> */}
                       <button
-                        className="product_buy_wishlist"
+                        className="wishlist_new"
                         onClick={
                           isAddedToWishlist
                             ? handleRemoveFromWishList
