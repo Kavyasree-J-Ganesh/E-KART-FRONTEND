@@ -61,7 +61,7 @@ function App() {
             <Route path="/login" element={<Signup />} />
             <Route path="/home" element={<React.Fragment><Header /><Homepage /></React.Fragment>} />
             <Route path="/home/:id" element={<React.Fragment><Header /><ProductDetails /></React.Fragment>} />
-            <Route path="/cart" element={<React.Fragment><Header /><Cart /></React.Fragment>} />
+            <Route path="/cart" element={<React.Fragment><Header /><Cart1 /></React.Fragment>} />
             <Route path="/address" element={<React.Fragment><Header /><AddressDetails /></React.Fragment>} />
             <Route path="/add-product" element={<React.Fragment><Header /><AddProduct /></React.Fragment>} />
             <Route path="/wishlist" element={<React.Fragment><Header /><Wishlist /></React.Fragment>} />
