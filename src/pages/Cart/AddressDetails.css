@@ -22,7 +22,7 @@ form>* {
     margin-bottom: 20px;
 }
 
-button {
+.checkout_button {
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
@@ -33,11 +33,11 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover:not([disabled]) {
+.checkout_button:hover:not([disabled]) {
     background-color: #0069d9;
 }
 
-button:disabled {
+.checkout_button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
@@ -69,7 +69,7 @@ button:disabled {
         margin-bottom: 10px;
     }
 
-    button {
+    .checkout_button {
         padding: 8px 16px;
         font-size: 16px;
     }
@@ -92,7 +92,7 @@ button:disabled {
         margin-bottom: 15px;
     }
 
-    button {
+    .checkout_button {
         padding: 10px 20px;
         font-size: 18px;
     }
@@ -118,7 +118,7 @@ button:disabled {
         margin-bottom: 20px;
     }
 
-    button {
+    .checkout_button {
         padding: 10px 20px;
         font-size: 18px;
     }
