@@ -10,7 +10,9 @@ import {
     addToWishlist,
     removeFromWishList,
 } from "./../../Services/WishlistService";
-
+import CheckoutForm from './Checkoutform';
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 
 
@@ -22,7 +24,12 @@ function AddandDeleteAddress() {
     const navigate = useNavigate();
     const [itemInpage, setItemInPage] = useState([]);
     const [updateData, setUpdateData] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [clientSecret, setClientSecret] = useState("");
 
+    const stripePromise = loadStripe(
+        "pk_test_51N12BsSHL3ZIWrpnuCIcbFzlmfLfaiEHDVYHVQdtCGuZcvHFgXBcnDnUyGMzifalYZ9rS3dtbWhq0OBoNGc0ZjBc00LPxcU5Hr",
+    );
 
     useEffect(() => {
         getAddress()
@@ -32,6 +39,10 @@ function AddandDeleteAddress() {
             .catch((err) => console.error("error :", err));
     }, [updateData]);
 
+
+    const handleSubmit = () => {
+        setIsSubmitted(true);
+    };
 
 
     return (
@@ -51,35 +62,60 @@ function AddandDeleteAddress() {
                                 My Address
                             </div>
                             <button className="add-address"
+                                style={{
+                                    padding: "5px", marginRight: "5px"
+                                }}
                                 onClick={() => {
                                     navigate("/address");
                                 }}>
                                 ADD New Address
                             </button>
                         </div>
+                        {/* {stripePromise && clientSecret ? (
+                            <Elements
+                                stripe={stripePromise}
+                                options={{ clientSecret: clientSecret }}
+                            >
+                                {isSubmitted ? (
+                                    <CheckoutForm />
+                                ) : ( */}
                         <div className="productSectionOfmyCart-address">
                             {itemInpage.map((product) => (
                                 <div div className="productsArrayMyArt-address">
                                     <div className="productrightcontntmtcrt-address">
-                                        <div className="titleMyproductcrt-address">{product.fullName}</div>
+                                        <div className="titleMyproductcrt-address" onClick={() => {
+                                            navigate("/CheckoutForm");
+                                        }}>
+                                            Full name: {product.fullName}</div >
                                         <div
                                             className="author-address"
-                                            style={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                                height: "25px",
-                                                marginLeft: "auto",
-                                            }}
+                                        // style={{
+                                        //     display: "flex",
+                                        //     alignItems: "center",
+                                        //     height: "25px",
+                                        //     marginLeft: "auto",
+                                        // }}
                                         >
-                                            {product.mobile}{" "}
+                                            Phone number: {product.mobile}{" "}
                                         </div>
                                         <div className="price111cart-address">
-                                            <span className="cart_item_price-address">{product.address}</span>
+                                            <span className="cart_item_price-address">Address: {product.address}</span>
                                             <span className="cart_item_discount_price-address">{product.town}</span>
                                         </div>
+                                    </div>
+                                    <div className="right-side-address">
                                         <div className="cart_add_and_remove-address">
                                             <button
                                                 className="wishlist_new-address"
+                                                style={{
+                                                    fontSize: "14px",
+                                                    padding: "7px",
+                                                    background: "#f6f5ea",
+                                                    border: "2px solid #f0e9e9",
+                                                    width: "80px",
+                                                    alignItems: "center",
+                                                    justifyContent: "center"
+                                                }}
                                                 onClick={() => {
                                                     deleteAddress(product.id)
                                                         .then((res) => {
@@ -97,16 +133,33 @@ function AddandDeleteAddress() {
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                            <div className="checkout-address-parent">
+                                <button className="checkout-next-address"
+                                    style={{
+                                        fontSize: "14px",
+                                        padding: "7px",
+                                        background: "#f6f5ea",
+                                        border: "2px solid #f0e9e9",
+                                        marginLeft: "620px"
 
+                                    }}
+                                    onClick={handleSubmit}
+                                >
+                                    Checkout
+                                </button>
+                            </div>
+                        </div>
+                        {/* )}
+                            </Elements>
+                        ) : (
+                            ""
+                        )} */}
                     </div>
                     {address && address.product && (
                         <div className="cart_place">
                             <button
                                 className="cart_place_order"
-                                onClick={() => {
-                                    navigate("/address");
-                                }}
+                                onClick={handleSubmit}
                             >
                                 PLACE ORDER
                             </button>

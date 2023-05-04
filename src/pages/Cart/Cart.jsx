@@ -75,7 +75,7 @@ const Cart = (props) => {
             {cart && cart.product && <div className="cart_place">
                 <div className="cart_total" style={{ fontWeight: 600 }} >Total Amount : {cart.cart_total} </div>
                 <button className="cart_place_order" onClick={() => {
-                    navigate("/address");
+                    navigate("/choose-address");
                 }}>
                     PLACE ORDER
                 </button>

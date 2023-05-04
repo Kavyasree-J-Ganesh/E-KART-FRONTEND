@@ -7,6 +7,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useEffect } from "react";
 import CheckoutForm from "./Checkoutform"
+import { createAddress } from "../../Services/AddressService";
+
+
 
 function AddressDetails() {
     const [fullName, setFullName] = useState("");
@@ -167,7 +170,16 @@ function AddressDetails() {
                                     />
                                     <br />
                                     <div className="checkout-button-container">
-                                        <button className="checkout_button" onClick={handleSubmit} type="button">
+                                        <button className="checkout_button" onClick={handleSubmit
+                                            // , createAddress(product.id)
+                                            //     .then((res) => {
+                                            //         setUpdateData(!updateData);
+                                            //     })
+                                            //     .catch((err) => {
+                                            //         console.error("error :", err);
+                                            //         setUpdateData(!updateData);
+                                            //     });
+                                        } type="button">
                                             Submit
                                         </button>
                                         {/* </StripeCheckout> */}
@@ -179,9 +191,10 @@ function AddressDetails() {
                 </Elements>
             ) : (
                 ""
-            )}
+            )
+            }
             {/* <Header /> */}
-        </div>
+        </div >
     );
 }
 
