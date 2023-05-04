@@ -132,27 +132,7 @@ function Cart1(props) {
                       <span className="cart_item_price">{`Rs. ${product.realPrice}`}</span>
                       <span className="cart_item_discount_price">{`Rs. ${product.discountedPrice}`}</span>
                     </div>
-                    {/* <div className="buttonOperationsMycrt">
-                      <RemoveCircleOutlineIcon
-                        // onClick={() => reduce(item.productId, item)}
-                        onClick={() => addToCartList(product.productId)}
-                        sx={{ height: "24px" }}
-                      />
-                      {/* <div className="counterFormycrtt">{item.quantity}</div> */}
-                    {/* <div className="counterFormycrtt">{product.quantity}</div>
-                      <AddCircleOutlineIcon
-                        onClick={() => removeFromCartList(product.productId)}
-                        sx={{ height: "24px" }}
-                      />
-                      <Button
-                        onClick={() => {
-                          // reset(item.productId, item);
-                        }}
-                        variant={"text"}
-                      >
-                        Remove
-                      </Button>
-                    </div> */}
+
                     <div className="cart_add_and_remove">
                       <AddCircleOutlineIcon className="cart_add_new" onClick={() => addToCartList(product.productId)}>+</AddCircleOutlineIcon>
                       <div className="cart_count_new">{product.quantity}</div>
@@ -181,7 +161,7 @@ function Cart1(props) {
             <button
               className="cart_place_order button_info"
               onClick={() => {
-                navigate("/address");
+                navigate("/choose-address");
               }}
             >
               PLACE ORDER
