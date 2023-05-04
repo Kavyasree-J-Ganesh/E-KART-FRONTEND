@@ -16,3 +16,9 @@ export const deleteAddress = async (id) => {
 }
 
 
+export const createAddress = async () => {
+    const result = await axios.post(`http://localhost:6060/api/v1/address`, {}, headerConfig)
+    return result
+}
+
+

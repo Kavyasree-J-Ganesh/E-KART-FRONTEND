@@ -54,7 +54,7 @@
 
 .productsArrayMyArt-address {
     display: flex;
-    height: 115px;
+    height: 85px;
     width: 100%;
     margin-bottom: 10px;
     /* border: 1px solid #f5f5f5; */
@@ -77,10 +77,10 @@
 
 .titleMyproductcrt-address {
     /* border: 1px solid red; */
-    margin-top: 0;
-    margin-right: auto;
-    font-size: 20px;
-    font-weight: 400;
+    margin-top: 5px;
+    /* margin-right: auto; */
+    font-size: 18px;
+    font-weight: normal;
     text-align: left;
     display: flex;
     justify-content: space-between;
@@ -88,14 +88,7 @@
 }
 
 .price111cart-address {
-    /* border: 1px solid red; */
-    font-weight: 630;
-    font-size: 18px;
-    letter-spacing: 0px;
-    color: #0a0102;
-    margin-right: auto;
-    margin-bottom: 0;
-    text-align: left;
+    font-size: 15px;
 }
 
 .buttonOperationsMycrt-address {
@@ -116,7 +109,7 @@
     margin-bottom: 0px;
     /* margin-left: 10px; */
     margin-bottom: 10px;
-    border: 1.5px solid #76b029;
+    border: 1.5px solid #f0e9e9;
     padding: 50px;
 }
 
@@ -125,7 +118,7 @@
     justify-content: space-between;
     align-items: center;
     /* background-color: #f5f5f5; */
-    background-color: #c7d2c8;
+    background-color: #f0e9e9;
     padding: 10px 2px 10px 1px;
     margin: 16px 0px 0px 0px;
     width: 100%;
@@ -141,9 +134,11 @@
 }
 
 .cart_add_and_remove-address {
-    width: 60%;
+    /* width: 99%; */
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    justify-content: end;
+    margin-right: 10px;
     padding: 0;
     margin-top: 5px;
 }
@@ -167,11 +162,28 @@
     height: 10px;
     font-size: 10px;
     display: flex;
-    align-items: center;
-    margin-left: 5px;
+    /* align-items: center; */
+    /* margin-left: 5px; */
+
+    /* font-size: "14px";
+    padding: "7px";
+    background: "#f6f5ea";
+    border: "2px solid #f0e9e9";
+    width: "90px";
+    align-items: "center";
+    justify-content: "center"; */
 }
 
 .cart_count_new-address {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.author-address {
+    display: flex;
+    align-items: center;
+    height: 25px;
+    /* margin-left: auto; */
+    font-size: 15px;
+    font-weight: 300;
 }
