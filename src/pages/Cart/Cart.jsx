@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import React from 'react';
 import Header from "../../components/Header/Header";
 import "./Cart.css";
 import { addToCart, getCart, removeFromCart } from "../../Services/cartService"
@@ -47,29 +48,32 @@ const Cart = (props) => {
             {cart && cart.product && <div className="cart">
                 {cart.product.map(product => (
                     <div className="cart_item">
-                        <div className="cart_item_image">
-                            <img style={{ width: "4rem", height:"85%" }} src={product.image} alt="product" />
-                        </div>
-                        <div className="cart_item_desc">
-                            <h6 className="cart_item_heading">{product.title}</h6>
-                            <div className="cart_item_author">by {product.manufacturer}</div>
-                            <div class="cart_item_price">
-                                <span className="cart_item_price">{`Rs. ${product.discountedPrice}`}</span>
-                                <span className="cart_item_discount_price">{`Rs. 500`}</span>
+                        <div className="cart_item_details">
+                            <div className="cart_item_image">
+                                <img style={{ width: "4rem", height: "85%" }} src={product.image} alt="product" />
+                            </div>
+                            <div className="cart_item_desc">
+                                <h6 className="cart_item_heading">{product.title}</h6>
+                                <div className="cart_item_author">by {product.manufacturer}</div>
+                                <div class="cart_item_price">
+                                    <span className="cart_item_price">{`Rs. ${product.discountedPrice}`}</span>
+                                    <span className="cart_item_discount_price">{`Rs. 500`}</span>
+                                </div>
                             </div>
                         </div>
+
                         <div className="cart_add_or_remove">
                             <button className="cart_add" onClick={() => addToCartList(product.productId)}>+</button>
                             <div className="cart_count">{product.quantity}</div>
                             <button className="cart_remove" onClick={() => removeFromCartList(product.productId)}>-</button>
-                            <a style={{fontSize: "12px"}} className="cart_remove_all">Remove</a>
+                            <a style={{ fontSize: "12px" }} className="cart_remove_all">Remove</a>
                         </div>
                     </div>
 
                 ))}
             </div>}
             {cart && cart.product && <div className="cart_place">
-                <div className="cart_total" style={{fontWeight:600}} >Total Amount : {cart.cart_total} </div>
+                <div className="cart_total" style={{ fontWeight: 600 }} >Total Amount : {cart.cart_total} </div>
                 <button className="cart_place_order" onClick={() => {
                     navigate("/address");
                 }}>

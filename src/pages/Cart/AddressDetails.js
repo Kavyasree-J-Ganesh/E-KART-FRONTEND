@@ -167,7 +167,7 @@ function AddressDetails() {
                                     />
                                     <br />
                                     <div className="checkout-button-container">
-                                        <button onClick={handleSubmit} type="button">
+                                        <button className="checkout_button" onClick={handleSubmit} type="button">
                                             Submit
                                         </button>
                                         {/* </StripeCheckout> */}

@@ -2,7 +2,7 @@
     position: relative;
     opacity: .5;
     cursor: pointer;
-    height: 25em;
+    height: 20em;
     overflow: hidden;
     transition: all 1.5s;
 }

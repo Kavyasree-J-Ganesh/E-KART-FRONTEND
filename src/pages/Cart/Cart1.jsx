@@ -159,7 +159,7 @@ function Cart1(props) {
           <div className="cart_place">
             {totalPrice ? <span>Total: {totalPrice}</span> : ""}
             <button
-              className="cart_place_order"
+              className="cart_place_order button_info"
               onClick={() => {
                 navigate("/choose-address");
               }}

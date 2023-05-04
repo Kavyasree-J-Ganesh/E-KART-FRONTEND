@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddProduct.css";
 import TextField from '@mui/material/TextField';
 import { toaster } from "../../utils/toast";
-import { editProduct, getProducts, postProduct } from "../../Services/ProductService";
+import { deleteProduct, editProduct, getProducts, postProduct } from "../../Services/ProductService";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -61,6 +61,18 @@ function AddProduct(props) {
     try {
       const result = props.isNew ? await postProduct(productObj) : await editProduct(props.product._id, productObj);
       toaster("info", props.isNew ? "Product added successfully" : "Product updated successfully")
+      setProductObj(INITIAL_PRODUCT)
+      getProductList();
+      props.close()
+    } catch (error) {
+      toaster("error", error.message)
+    }
+  }
+
+  const removeProduct = async()=>{
+    try {
+      const result = await deleteProduct(props.product._id)
+      toaster("info","Product removed ccessfully")
       setProductObj(INITIAL_PRODUCT)
       getProductList();
       props.close()
@@ -168,6 +180,7 @@ function AddProduct(props) {
         </div>
       </div>
       <div className="add_products_footer">
+        <button className="button_info" onClick={removeProduct}>Remove</button>
         <button className="button_info" onClick={addProduct}>{props.isNew ? "Create" : "Update"}</button>
         <button className="button_cancel" onClick={cancelAddProduct}>Cancel</button>
       </div>
