@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { addToCart, getCart, removeFromCart } from "../../Services/cartService";
 import { getAddress, deleteAddress } from "../../Services/AddressService";
 import { useDispatch, useSelector } from "react-redux";
 import "./AddandDeleteAddress.css";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  addToWishlist,
-  removeFromWishList,
-} from "./../../Services/WishlistService";
-import CheckoutForm from "./Checkoutform";
-import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
 function AddandDeleteAddress() {
@@ -22,7 +13,7 @@ function AddandDeleteAddress() {
   const [itemInpage, setItemInPage] = useState([]);
   const [updateData, setUpdateData] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [clientSecret, setClientSecret] = useState("");
+
 
   const stripePromise = loadStripe(
     "pk_test_51N12BsSHL3ZIWrpnuCIcbFzlmfLfaiEHDVYHVQdtCGuZcvHFgXBcnDnUyGMzifalYZ9rS3dtbWhq0OBoNGc0ZjBc00LPxcU5Hr",
@@ -67,14 +58,6 @@ function AddandDeleteAddress() {
                 ADD New Address
               </button>
             </div>
-            {/* {stripePromise && clientSecret ? (
-                            <Elements
-                                stripe={stripePromise}
-                                options={{ clientSecret: clientSecret }}
-                            >
-                                {isSubmitted ? (
-                                    <CheckoutForm />
-                                ) : ( */}
             <div className="productSectionOfmyCart-address">
               {itemInpage.map((product) => (
                 <div className="productsArrayMyArt-address">
@@ -93,12 +76,6 @@ function AddandDeleteAddress() {
                     </div>
                     <div
                       className="author-address"
-                      // style={{
-                      //     display: "flex",
-                      //     alignItems: "center",
-                      //     height: "25px",
-                      //     marginLeft: "auto",
-                      // }}
                     >
                       Phone number: {product.mobile}{" "}
                     </div>
@@ -141,27 +118,8 @@ function AddandDeleteAddress() {
                   </div>
                 </div>
               ))}
-              <div className="checkout-address-parent">
-                <button
-                  className="checkout-next-address"
-                  style={{
-                    fontSize: "14px",
-                    padding: "7px",
-                    background: "#f6f5ea",
-                    border: "2px solid #f0e9e9",
-                    marginLeft: "620px",
-                  }}
-                  onClick={handleSubmit}
-                >
-                  Checkout
-                </button>
-              </div>
+
             </div>
-            {/* )}
-                            </Elements>
-                        ) : (
-                            ""
-                        )} */}
           </div>
           {address && address.product && (
             <div className="cart_place">

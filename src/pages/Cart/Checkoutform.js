@@ -4,6 +4,8 @@ import {
     useStripe,
 } from "@stripe/react-stripe-js";
 import React from "react";
+import './Checkoutform.css'
+
 
 function CheckoutForm() {
     const stripe = useStripe();
@@ -24,12 +26,12 @@ function CheckoutForm() {
         console.log("paymentIntent in checkout form", paymentIntent);
     };
     return (
-        <div>
+        <div className="main-checkout-form">
             <PaymentElement />
-            <button onClick={handleCheckout} className="checkout-btn">
+            <button onClick={handleCheckout} className="payment-checkout">
                 Checkout
             </button>
-        </div>
+        </ div>
     );
 }
 
