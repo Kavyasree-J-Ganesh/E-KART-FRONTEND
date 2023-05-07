@@ -10,9 +10,7 @@ function Strip_Payment() {
     });
 
     async function handleToken(token) {
-        //     const response = await axios.post('http://localhost:6060/api/v1/payment', { token, demoProduct });
-        //     console.log(response.status);
-        // }
+
         try {
             const response = await axios.post('http://localhost:6060/api/v1/payment', { token, demoProduct });
             console.log(response.status);

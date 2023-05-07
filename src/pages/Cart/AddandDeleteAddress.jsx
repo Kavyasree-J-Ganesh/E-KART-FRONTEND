@@ -14,7 +14,6 @@ function AddandDeleteAddress() {
   const [updateData, setUpdateData] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-
   const stripePromise = loadStripe(
     "pk_test_51N12BsSHL3ZIWrpnuCIcbFzlmfLfaiEHDVYHVQdtCGuZcvHFgXBcnDnUyGMzifalYZ9rS3dtbWhq0OBoNGc0ZjBc00LPxcU5Hr",
   );
@@ -61,22 +60,20 @@ function AddandDeleteAddress() {
             <div className="productSectionOfmyCart-address">
               {itemInpage.map((product) => (
                 <div className="productsArrayMyArt-address">
-                  <div className="productrightcontntmtcrt-address">
-                    <div
-                      className="titleMyproductcrt-address"
-                      onClick={() => {
-                        navigate("/address", {
-                          state: {
-                            isSubmitted: true,
-                          },
-                        });
-                      }}
-                    >
+                  <div
+                    className="productrightcontntmtcrt-address"
+                    onClick={() => {
+                      navigate("/address", {
+                        state: {
+                          isSubmitted: true,
+                        },
+                      });
+                    }}
+                  >
+                    <div className="titleMyproductcrt-address">
                       Full name: {product.fullName}
                     </div>
-                    <div
-                      className="author-address"
-                    >
+                    <div className="author-address">
                       Phone number: {product.mobile}{" "}
                     </div>
                     <div className="price111cart-address">
@@ -118,7 +115,6 @@ function AddandDeleteAddress() {
                   </div>
                 </div>
               ))}
-
             </div>
           </div>
           {address && address.product && (
