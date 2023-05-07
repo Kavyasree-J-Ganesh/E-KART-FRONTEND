@@ -10,7 +10,6 @@ import Checkout from "./pages/Checkout/Checkout";
 import Cart from "./pages/Cart/Cart";
 import AddProduct from "./components/AddProduct/AddProduct";
 import Wishlist from "./pages/Wishlist/Wishlist";
-import Cart1 from "./pages/Cart/Cart1";
 import Strip_Payment from "./Strip_Payment/Strip_Payment";
 import AddressDetails from "./pages/Cart/AddressDetails";
 import './App.css';
