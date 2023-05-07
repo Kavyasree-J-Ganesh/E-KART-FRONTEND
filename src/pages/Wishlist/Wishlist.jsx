@@ -17,10 +17,6 @@ import { useDispatch, useSelector } from "react-redux";
 function Wishlist(props) {
   const [wishlist, setWishlist] = useState([]);
 
-  // const cart = useSelector(state => state.cart)
-
-  //   const dispatch = useDispatch();
-
   useEffect(() => {
     getCartItems();
   }, []);
@@ -69,7 +65,6 @@ function Wishlist(props) {
         <div className="HeadingOfMyCartog">
           <div className="MycartLeftHeading">
             My Wishlist
-            {/* {product.length ? `(${product.length})` : ""} */}
           </div>
         </div>
         {wishlist && (
@@ -83,7 +78,6 @@ function Wishlist(props) {
                     alt="product"
                     width={"60px"}
                   />
-                  {/* <img src={download} height={"80px"} width={"65px"}></img> */}
                 </div>
                 <div className="productrightcontntmtcrt">
                   <div className="titleMyproductcrt">
