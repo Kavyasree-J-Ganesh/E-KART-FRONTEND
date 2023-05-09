@@ -20,7 +20,7 @@ function CheckoutForm() {
                 return_url: `${window.location.origin}/checkout`,
             },
         });
-        console.log("erroror in checkout form", error);
+        console.log("error in checkout from", error);
         console.log("paymentIntent in checkout form", paymentIntent);
     };
     return (

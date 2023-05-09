@@ -91,7 +91,7 @@
 }
 
 .cart_count{
-    font-size: 17px;
+    font-size: 23px;
     color: black;
     width: 3.5rem;
     display: flex;
@@ -129,9 +129,18 @@
 .cart_remove_all{
     padding-left: 20px;
     font-size: 20px;
+    margin-left: 5%;
+}
+
+.cart_add_to_wishlist{
+    margin-left: 5%;
 }
 
 .cart_remove_all:hover{
+    color:#76b029;
+}
+
+.cart_add_to_wishlist:hover{
     color:#76b029;
 }
 
