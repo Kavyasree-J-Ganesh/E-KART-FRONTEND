@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Header from "../../components/Header/Header"
 import "../Homepage/Homepage.css"
-import { getProducts } from "../../Services/ProductService";
+import { getProducts, searchText } from "../../Services/ProductService";
 import Product from "../../components/Product/Product";
 import { getCart } from "../../Services/cartService";
 import Category from "../../components/Category/Catagory";
@@ -10,12 +10,25 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Homepage = props => {
     const product = useSelector(state=> state.product)
+    const [productList, setProductList] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
         getProductList();
         getCartItems()
     }, [])
+
+    useEffect(() => {
+        setProductList(product?.products)
+    }, [product])
+
+    useEffect(() => {
+        if (props.search) {
+            searchText(props.search).then(res => {
+                setProductList(res.data.data)
+            }).catch(err => console.error("error :",err))
+        }
+    }, [props])
 
 
 
@@ -40,7 +53,7 @@ const Homepage = props => {
         <div className="homepage">
             <Category/>
             <div className="homepage_products">
-                 {product?.products.map(product=> <Product product={product}/>)}
+                 {productList?.map((product, index)=> <React.Fragment key={index}><Product product={product}/></React.Fragment>)}
             </div>
         </div>
     )

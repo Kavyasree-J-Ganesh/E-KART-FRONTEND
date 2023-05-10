@@ -62,7 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
-const Header = props => {
+const Header = ({ search, setSearch }) => {
     const navigate = useNavigate()
     const auth = useSelector(state => state.auth)
     const dispatch = useDispatch();
@@ -113,6 +113,10 @@ const Header = props => {
         navigate("/user")
     }
 
+    const handleSubmit = (e) => {
+        setSearch(e.target.value)
+    }
+
     return (
 
         <div className="header">
@@ -120,14 +124,16 @@ const Header = props => {
                 <AddProduct isNew={true} close={() => setIsAddProduct(prev => !prev)} />
             </Modal>
             <h3 style={{ cursor: "pointer" }} onClick={navigateToHome}>E-KART</h3>
-            <div className="header_search">
+            <div className="header_search" onSubmit={handleSubmit}>
                 <Search>
                     <SearchIconWrapper>
                         <SearchIcon color="action" />
                     </SearchIconWrapper>
                     <StyledInputBase
                         placeholder="Search"
-                        inputProps={{ 'aria-label': 'search' }}
+                        inputProps={{ 'aria-label': 'search', value: search, onChange: handleSubmit }}
+                        // value={search}
+                        // onChange={handleSubmit}
                     />
                 </Search>
             </div>

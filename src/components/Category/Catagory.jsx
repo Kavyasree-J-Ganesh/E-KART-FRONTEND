@@ -41,7 +41,7 @@ const Category = props => {
     return (
         <div className="catagories" >
             <span className="catagory" onClick={()=> setCategory("")}>ALL</span>
-            {categories.map(category=> <span onClick={()=> setCategory(category.name)} className="catagory">{category.name}</span>)}
+            {categories.map((category, index)=> <React.Fragment key={index}><span onClick={()=> setCategory(category.name)} className="catagory">{category.name}</span></React.Fragment>)}
         </div>
     )
 }

@@ -33,7 +33,6 @@ const SaleAnalysis = () => {
     const getTopSelledProductList = async () => {
         try {
             const result = await getTopSelledProducts();
-            console.log(result)
             setTopSelled(result.data.data)
         } catch (error) {
 
