@@ -13,7 +13,6 @@ function Strip_Payment() {
 
         try {
             const response = await axios.post('http://localhost:6060/api/v1/payment', { token, demoProduct });
-            console.log(response.status);
         } catch (error) {
             console.error(error);
         }

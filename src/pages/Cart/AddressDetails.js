@@ -10,6 +10,7 @@ import CheckoutForm from "./Checkoutform";
 // import { createAddress } from "../../Services/AddressService";
 import { createAddress } from "./../../Services/AddressService";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function AddressDetails() {
   const [fullName, setFullName] = useState("");
@@ -114,7 +115,7 @@ function AddressDetails() {
     };
     createAddress(data)
       .then((res) => {
-        console.log("address added", res.data);
+        toast.success("Address Added")
       })
       .catch((err) => console.log("address Not added", err));
     setIsSubmitted(true);

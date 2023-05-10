@@ -175,7 +175,7 @@ function SignUp() {
       <div className="form">
         <form action="">
           
-          {isSignUp && <div class="text-box">
+          {isSignUp && <div className="text-box">
             <TextField
               value={signupObj.firstname}
               id="outlined-basic"
@@ -187,7 +187,7 @@ function SignUp() {
               onChange={onfirstnameChange} />
           </div>}
 
-          {isSignUp && <div class="text-box">
+          {isSignUp && <div className="text-box">
             <TextField
               value={signupObj.lastname}
               id="outlined-basic"
@@ -197,7 +197,7 @@ function SignUp() {
               onChange={onlastnameChange} />
           </div>}
 
-          {isSeller && isSignUp && <div class="text-box">
+          {isSeller && isSignUp && <div className="text-box">
             <TextField
               value={signupObj.companyname}
               id="outlined-basic"
@@ -210,7 +210,7 @@ function SignUp() {
           </div>}
 
 
-          <div class="text-box">
+          <div className="text-box">
             <TextField
               value={signupObj.email}
               id="outlined-basic"
@@ -222,7 +222,7 @@ function SignUp() {
               onChange={onEmailChange} />
           </div>
 
-          {isSignUp && <div class="text-box">
+          {isSignUp && <div className="text-box">
             <TextField
               value={signupObj.phonenumber}
               id="outlined-basic"
@@ -235,7 +235,7 @@ function SignUp() {
             />
           </div>}
 
-          <div class="text-box">
+          <div className="text-box">
             <TextField
               value={signupObj.password}
               id="outlined-basic"
@@ -247,7 +247,7 @@ function SignUp() {
               onChange={onPasswordChange} />
           </div>
 
-          {isSignUp && <div class="text-box">
+          {isSignUp && <div className="text-box">
             <TextField
               value={signupObj.confirmpassword}
               id="outlined-basic"

@@ -4,9 +4,9 @@ import "./Product.css";
 import { useNavigate } from "react-router-dom";
 import AddProduct from "../../components/AddProduct/AddProduct";
 import Modal from "../Modal/Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-
+// import { searchText } from "../../Services/ProductService";
 
 const Product = (props) => {
     const navigate = useNavigate();
@@ -19,6 +19,22 @@ const Product = (props) => {
             setIsAddProduct(prev => !prev)
         }
     }
+
+
+    const [posts, setposts] = useState([]);
+    const [searchResults, setsearchResults] = useState([]);
+
+
+    // useEffect(() => {
+    //     searchText().then(json => {
+    //         setposts(json)
+    //         return json
+    //     }).then(json => {
+    //         setsearchResults(json)
+    //     })
+    // }, []);
+
+
     return (
         <React.Fragment>
             <Modal open={isAddProduct} close={() => setIsAddProduct(prev => !prev)} >
@@ -37,7 +53,7 @@ const Product = (props) => {
                         </span>
                         <span className="product_review_count">({props.product.reviewcount})</span>
                     </div>}
-                    <div class="product_price">
+                    <div className="product_price">
                         <span className="product_details_realPrice">{`Rs. ${props.product.discountedPrice}`}</span>
                         <span className="product_details_discounted_price">{`Rs. ${props.product.realPrice}`}</span>
                     </div>

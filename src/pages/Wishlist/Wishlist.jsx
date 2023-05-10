@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./Wishlist.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
-import download from "../../assest/download.jpg";
-import { addToCart, removeFromCart } from "../../Services/cartService";
+
 
 import {
   getWishlist,
   addToWishlist,
   removeFromWishList,
 } from "../../Services/WishlistService";
-import { useDispatch, useSelector } from "react-redux";
 
 function Wishlist(props) {
   const [wishlist, setWishlist] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCartItems();
@@ -39,6 +39,7 @@ function Wishlist(props) {
     try {
       await addToWishlist(id);
       getCartItems();
+      navigate("/cart")
     } catch (e) {
       console.log(e);
     }
@@ -52,6 +53,7 @@ function Wishlist(props) {
       console.log(e);
     }
   };
+
 
   return (
     <div>
@@ -69,8 +71,8 @@ function Wishlist(props) {
         </div>
         {wishlist && (
           <div className="productSectionOfmyCart">
-            {wishlist.map((product) => (
-              <div className="productsArrayMyArt">
+            {wishlist.map((product, index) => (
+              <div className="productsArrayMyArt" key="index">
                 <div className="imgInMyCartOfproduct">
                   <img
                     src={product.Image}
@@ -82,7 +84,6 @@ function Wishlist(props) {
                 <div className="productrightcontntmtcrt">
                   <div className="titleMyproductcrt">
                     {product.title}
-                    {/* iphone */}
                     <Button
                       onClick={() => removeFromCartList(product.productId)}
                       variant={"text"}
@@ -99,11 +100,10 @@ function Wishlist(props) {
                       marginLeft: "auto",
                     }}
                   >
-                    by {product.manufacturer} {/* by Shashank{" "} */}
+                    by {product.manufacturer}
                   </div>
 
                   <div className="price111cart">RS {product.discountedPrice}</div>
-                  {/* <div className="price111cart">RS 300</div> */}
                 </div>
                 <button
                   className="product_buy_wishlist"
@@ -113,14 +113,10 @@ function Wishlist(props) {
                       : addToCartList
                   }
                 >
-                  {isAddedToWishlist ? "Remove" : "Add To Cart"}
+                  {isAddedToWishlist ? "Go to Cart" : "Add To Cart"}
                 </button>
               </div>
             ))}
-
-            {/* <div className="butnnsLasplcor">
-
-                        </div> */}
           </div>
         )}
       </div>
