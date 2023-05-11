@@ -39,33 +39,11 @@ function Order_History() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="right-side-order">
-                                    <div className="cart_add_and_remove-order">
-                                        <button
-                                            className="order-new"
-                                            style={{
-                                                fontSize: "14px",
-                                                padding: "7px",
-                                                background: "#f6f5ea",
-                                                border: "2px solid #f0e9e9",
-                                                width: "80px",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                            }}
 
-                                        >
-                                            Remove
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
 
                         </div>
-                        {/* <div className="cart_place-order">
-                            <button className="cart_place_order-order" >
-                                PLACE ORDER
-                            </button>
-                        </div> */}
+
                     </div>
 
                 </div>
