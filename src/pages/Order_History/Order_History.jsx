@@ -28,19 +28,16 @@ function Order_History() {
 
                                 >
                                     <div className="titleMyproductcrt-order">
-                                        Title:
+                                        Total Product:
                                     </div>
                                     <div className="author-order">
-                                        Manufacturer:
+                                        Total Price:
                                     </div>
                                     <div className="price111cart-order">
-                                        <span className="cart_item_price-order">
-                                            Price:
-                                        </span>
+                                        <div className="cart_item_price-order">
+                                            Purchased Date:
+                                        </div>
                                     </div>
-                                    <span className="cart_item_discount_price-order">
-                                        Purchased Date:
-                                    </span>
                                 </div>
                                 <div className="right-side-order">
                                     <div className="cart_add_and_remove-order">

@@ -13,6 +13,8 @@ import Modal from "../Modal/Modal";
 import { useState } from "react";
 import AddProduct from "../AddProduct/AddProduct";
 import { toaster } from "../../utils/toast";
+import Badge from '@mui/material/Badge';
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -64,7 +66,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Header = ({ search, setSearch }) => {
     const navigate = useNavigate()
-    const {auth, cart} = useSelector(state => state)
+    const { auth, cart, wishlist } = useSelector(state => state)
     const dispatch = useDispatch();
 
     const [isAddProduct, setIsAddProduct] = useState(false)
@@ -90,7 +92,7 @@ const Header = ({ search, setSearch }) => {
         localStorage.removeItem("auth")
         localStorage.removeItem("isAdmin")
         dispatch({ type: "LOGOUT" })
-        dispatch({type: "CLEAR_CART"})
+        dispatch({ type: "CLEAR_CART" })
     }
 
     const navigateToCart = () => {
@@ -100,7 +102,7 @@ const Header = ({ search, setSearch }) => {
         navigate("/cart")
     }
 
-    const wishlist = () => {
+    const navigateToWishlist = () => {
         if (isAuthenticationRequired()) {
             return true
         }
@@ -133,8 +135,8 @@ const Header = ({ search, setSearch }) => {
                     <StyledInputBase
                         placeholder="Search"
                         inputProps={{ 'aria-label': 'search', value: search, onChange: handleSubmit }}
-                        // value={search}
-                        // onChange={handleSubmit}
+                    // value={search}
+                    // onChange={handleSubmit}
                     />
                 </Search>
             </div>
@@ -143,12 +145,14 @@ const Header = ({ search, setSearch }) => {
                 {!auth.isLogin && <div className="header_login" onClick={() => isAuthenticationRequired()}>
                     Login
                 </div>}
-                {!auth.isAdmin && <div className="header_icons" onClick={wishlist}>
-                    <FavoriteBorderOutlinedIcon title="add to wishlist" sx={{ fontSize: 25 }} />
-                </div>}
+                <Badge badgeContent={wishlist?.product?.length ? wishlist?.product?.length : ""} >
+                    {!auth.isAdmin && <div className="header_icons" onClick={navigateToWishlist}>
+                        <FavoriteBorderOutlinedIcon title="add to wishlist" sx={{ fontSize: 25 }} />
+                    </div>}
+                </Badge>
                 {!auth.isAdmin && <div className="header_icons" onClick={navigateToCart}>
                     <ShoppingBagOutlinedIcon color="white" sx={{ fontSize: 25 }} />
-                    <span className="cart_quantity">{cart?.product?.length ? cart?.product?.length : "" }</span>
+                    <span className="cart_quantity">{cart?.product?.length ? cart?.product?.length : ""}</span>
                 </div>}
 
                 {auth.isAdmin && <div className="header_icons" onClick={() => setIsAddProduct(prev => !prev)}>
@@ -160,7 +164,7 @@ const Header = ({ search, setSearch }) => {
                 </div>}
             </div>
 
-        </div>
+        </div >
     )
 }
 

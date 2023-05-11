@@ -70,7 +70,7 @@ const Cart = (props) => {
                             <a style={{ fontSize: "12px" }} className="cart_remove_all">Add To Wishlist</a>
                         </div>
                     </div>
-                    ))}
+                ))}
             </div>}
             {cart && cart.product && <div className="cart_place">
                 <div className="cart_total" style={{ fontWeight: 600 }} >Total Amount : {cart.cart_total} </div>

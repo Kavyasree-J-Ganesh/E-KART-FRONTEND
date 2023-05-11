@@ -94,6 +94,11 @@
     background-color: #76b029;
 }
 
+
+.wishlist-badge {
+    font-weight: 600;
+}
+
 @media screen and (max-width: 900px) {
     .header_search {
         margin-left: 0%;
