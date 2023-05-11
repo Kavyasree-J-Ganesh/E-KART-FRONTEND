@@ -1,19 +1,19 @@
-.cartMainBox-order {
+.cartMainBox-orderDetail {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.cartHeadNames-order {
+.cartHeadNames-orderDetail {
     display: flex;
     width: 900px;
 }
 
-.page-dir-order {
+.page-dir-orderDetail {
     font-weight: 500;
 }
 
-.mainMyCArtt-order {
+.mainMyCArtt-orderDetail {
     margin: 10px;
     margin-right: auto;
     margin-left: auto;
@@ -24,7 +24,7 @@
     padding: 50px;
 }
 
-.HeadingOfMyCartog-order {
+.HeadingOfMyCartog-orderDetail {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,7 +34,7 @@
     width: 100%;
 }
 
-.MycartLeftHeading-order {
+.MycartLeftHeading-orderDetail {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,12 +42,12 @@
     margin-left: 23px;
 }
 
-.productSectionOfmyCart-order {
+.productSectionOfmyCart-orderDetail {
     width: 100%;
     margin: 0px 0px;
 }
 
-.productsArrayMyArt-order {
+.productsArrayMyArt-orderDetail {
     display: flex;
     height: 80px;
     width: 100%;
@@ -55,7 +55,7 @@
     border: 1px solid #c7d2c8;
 }
 
-.imgInMyCartOfproduct-order {
+.imgInMyCartOfproduct-orderDetail {
     height: 85px;
     width: 70px;
     border: 1px solid #c7d2c8;
@@ -63,13 +63,13 @@
     margin-top: 12.1px;
 }
 
-.productrightcontntmtcrt-order {
+.productrightcontntmtcrt-orderDetail {
     margin-left: 20px;
     width: 100%;
     cursor: pointer;
 }
 
-.titleMyproductcrt-order {
+.titleMyproductcrt-orderDetail {
     margin-top: 5px;
     font-size: 18px;
     font-weight: normal;
@@ -79,11 +79,11 @@
     align-items: center;
 }
 
-.price111cart-order {
+.price111cart-orderDetail {
     font-size: 15px;
 }
 
-.buttonOperationsMycrt-order {
+.buttonOperationsMycrt-orderDetail {
     display: flex;
     height: 26px;
     align-items: center;
@@ -92,7 +92,7 @@
     width: 30%;
 }
 
-.mainMyCArtt-order {
+.mainMyCArtt-orderDetail {
     margin: 10px;
     margin-right: auto;
     margin-left: auto;
@@ -103,7 +103,7 @@
     padding: 50px;
 }
 
-.HeadingOfMyCartog-order {
+.HeadingOfMyCartog-orderDetail {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -113,7 +113,7 @@
     width: 100%;
 }
 
-.MycartLeftHeading-order {
+.MycartLeftHeading-orderDetail {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,7 +121,7 @@
     margin-left: 23px;
 }
 
-.cart_add_and_remove-order {
+.cart_add_and_remove-orderDetail {
     display: flex;
     justify-content: end;
     margin-right: 10px;
@@ -129,7 +129,7 @@
     margin-top: 5px;
 }
 
-.cart_count-order {
+.cart_count-orderDetail {
     font-size: 10px;
 }
 
@@ -139,7 +139,7 @@
     display: flex;
 }
 
-.author-order {
+.author-orderDetail {
     display: flex;
     align-items: center;
     height: 25px;
@@ -147,7 +147,7 @@
     font-weight: 300;
 }
 
-.cart_place-order {
+.cart_place-orderDetail {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -162,11 +162,19 @@
     left: 0;
 }
 
-.cart_place_order-order {
-    padding: 8px 20px;
-    background-color: #ecb56e;
-    border: none;
-    border-radius: 2px;
-    color: white;
-    border-radius: 10px;
+
+
+.cart_place-orderDetail {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-top: 1px solid #f0f0f0;
+    background: #fff;
+    padding: 16px 22px;
+    box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, .1);
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
