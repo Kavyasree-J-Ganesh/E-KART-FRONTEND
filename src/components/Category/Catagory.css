@@ -19,6 +19,11 @@
     margin-bottom: 10px;
 }
 
+.selected_category{
+    border-bottom: 2px solid #ecb56e;
+    font-weight: 600;
+}
+
 @media screen and (max-width: 600px) {
     .catagory{
         font-size: .6rem;

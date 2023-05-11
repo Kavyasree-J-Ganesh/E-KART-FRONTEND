@@ -57,7 +57,7 @@ const Cart = (props) => {
                                 <div className="cart_item_author">by {product.manufacturer}</div>
                                 <div class="cart_item_price">
                                     <span className="cart_item_price">{`Rs. ${product.discountedPrice}`}</span>
-                                    <span className="cart_item_discount_price">{`Rs. 500`}</span>
+                                    <span className="cart_item_discount_price">{`Rs. ${product.realPrice}`}</span>
                                 </div>
                             </div>
                         </div>
@@ -67,10 +67,10 @@ const Cart = (props) => {
                             <div className="cart_count">{product.quantity}</div>
                             <button className="cart_remove" onClick={() => removeFromCartList(product.productId)}>-</button>
                             <a style={{ fontSize: "12px" }} className="cart_remove_all">Remove</a>
+                            <a style={{ fontSize: "12px" }} className="cart_remove_all">Add To Wishlist</a>
                         </div>
                     </div>
-
-                ))}
+                    ))}
             </div>}
             {cart && cart.product && <div className="cart_place">
                 <div className="cart_total" style={{ fontWeight: 600 }} >Total Amount : {cart.cart_total} </div>

@@ -121,7 +121,7 @@ const ProductDetails = (props) => {
                                                 : handleAddToWishList
                                         }
                                     >
-                                        {isAddedToWishlist ? "Remove" : "WISHLIST"}
+                                        {isAddedToWishlist ? "REMOVE" : "WISHLIST"}
                                     </button>
                                     {/* <button className="product_buy_wishlist">WISHLIST</button> */}
                                 </div>
