@@ -8,40 +8,40 @@ import { useEffect } from "react";
 
 const Category = props => {
     const dispatch = useDispatch()
-    const {categories, product} = useSelector(state=> state)
+    const { categories, product } = useSelector(state => state)
 
-    useEffect(()=>{
+    useEffect(() => {
         getCategoryList()
-      }, [])
+    }, [])
 
-      useEffect(() => {
+    useEffect(() => {
         getProductList();
     }, [product.selectedCategory])
 
-    const getCategoryList =  async ()=>{
+    const getCategoryList = async () => {
         const result = await getCategories();
-        
-        dispatch({type: "SET_CATEGORIES", payload: result.data.data})
+
+        dispatch({ type: "SET_CATEGORIES", payload: result.data.data })
     }
 
     async function getProductList() {
         try {
             const products = await getProducts(product.selectedCategory);
-            dispatch({type:"SET_PRODUCTS", payload: products.data})
+            dispatch({ type: "SET_PRODUCTS", payload: products.data })
         } catch (e) {
             console.log(e)
         }
     }
 
     const setCategory = (category) => {
-        dispatch({type:"SET_SELECTED_CATEGORY", payload:{category}})
+        dispatch({ type: "SET_SELECTED_CATEGORY", payload: { category } })
     }
 
 
     return (
         <div className="catagories" >
-            <span className="catagory" onClick={()=> setCategory("")}>ALL</span>
-            {categories.map(category=> <span onClick={()=> setCategory(category.name)} className="catagory">{category.name}</span>)}
+            <span className={`catagory ${product.selectedCategory === "" ? "selected_category" : ""}`} onClick={() => setCategory("")}>ALL</span>
+            {categories.map(category => <span onClick={() => setCategory(category.name)} className={`catagory ${product.selectedCategory === category.name ? "selected_category" : ""}`}>{category.name}</span>)}
         </div>
     )
 }

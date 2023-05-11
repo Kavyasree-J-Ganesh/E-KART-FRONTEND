@@ -1,8 +1,6 @@
 const initialState = {
-
 	products: [],
 	selectedCategory: ""
-
 };
 
 export const productReducer = (state = initialState, action) => {
