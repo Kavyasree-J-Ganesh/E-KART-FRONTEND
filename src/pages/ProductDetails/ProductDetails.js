@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import StarIcon from '@mui/icons-material/Star';
 import "./ProductDetails.css"
-import Header from "../../components/Header/Header";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProduct } from "../../Services/ProductService";
 import { addToCart, removeFromCart, getCart } from "../../Services/cartService";
@@ -11,12 +10,13 @@ import {
     addToWishlist,
     removeFromWishList,
 } from "./../../Services/WishlistService";
+import { toaster } from "../../utils/toast";
 
 
 const ProductDetails = (props) => {
     let { id } = useParams();
     const [product, setProduct] = useState(null);
-    const cart = useSelector(state => state.cart)
+    const {cart, auth} = useSelector(state => state)
     const [currentProduct, setCurrentProduct] = useState(null)
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -27,8 +27,21 @@ const ProductDetails = (props) => {
         getProductById(id);
     }, [id])
 
+    const isAuthenticationRequired = () => {
+        if (!auth.isLogin) {
+            toaster("info", "login/signup to continue")
+            dispatch({ type: "SET_LOGIN_REQUIRED" })
+            return true
+        }
+
+        return false
+    }
+
 
     const handleAddToWishList = () => {
+        if(isAuthenticationRequired()){
+            return 
+        }
         addToWishlist(id)
             .then((res) => {
                 setIsAddedToWishlist(true);
@@ -37,6 +50,9 @@ const ProductDetails = (props) => {
     };
 
     const handleRemoveFromWishList = () => {
+        if(isAuthenticationRequired()){
+            return 
+        }
         removeFromWishList(id)
             .then((res) => {
                 setIsAddedToWishlist(false);
@@ -65,6 +81,9 @@ const ProductDetails = (props) => {
     }
 
     const addToCartList = async () => {
+        if(isAuthenticationRequired()){
+            return 
+        }
         if (currentProduct?.quantity) {
             navigate("/cart")
         } else {
