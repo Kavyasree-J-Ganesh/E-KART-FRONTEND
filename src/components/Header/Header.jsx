@@ -64,7 +64,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Header = ({ search, setSearch }) => {
     const navigate = useNavigate()
-    const auth = useSelector(state => state.auth)
+    const {auth, cart} = useSelector(state => state)
     const dispatch = useDispatch();
 
     const [isAddProduct, setIsAddProduct] = useState(false)
@@ -90,9 +90,10 @@ const Header = ({ search, setSearch }) => {
         localStorage.removeItem("auth")
         localStorage.removeItem("isAdmin")
         dispatch({ type: "LOGOUT" })
+        dispatch({type: "CLEAR_CART"})
     }
 
-    const cart = () => {
+    const navigateToCart = () => {
         if (isAuthenticationRequired()) {
             return true
         }
@@ -145,9 +146,9 @@ const Header = ({ search, setSearch }) => {
                 {!auth.isAdmin && <div className="header_icons" onClick={wishlist}>
                     <FavoriteBorderOutlinedIcon title="add to wishlist" sx={{ fontSize: 25 }} />
                 </div>}
-                {!auth.isAdmin && <div className="header_icons" onClick={cart}>
+                {!auth.isAdmin && <div className="header_icons" onClick={navigateToCart}>
                     <ShoppingBagOutlinedIcon color="white" sx={{ fontSize: 25 }} />
-                    <span className="cart_quantity">1</span>
+                    <span className="cart_quantity">{cart?.product?.length ? cart?.product?.length : "" }</span>
                 </div>}
 
                 {auth.isAdmin && <div className="header_icons" onClick={() => setIsAddProduct(prev => !prev)}>
