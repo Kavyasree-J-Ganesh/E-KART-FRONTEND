@@ -1,9 +1,11 @@
 import React from "react";
 import './Order_History.css'
+import { useNavigate } from "react-router-dom";
+
 
 function Order_History() {
 
-
+    const navigate = useNavigate()
 
     return (
         <div>
@@ -22,7 +24,7 @@ function Order_History() {
                         </div>
                         <div className="productSectionOfmyCart-order">
 
-                            <div className="productsArrayMyArt-order">
+                            <div className="productsArrayMyArt-order" onClick={() => { navigate("/Order-History/order") }}>
                                 <div
                                     className="productrightcontntmtcrt-order"
 

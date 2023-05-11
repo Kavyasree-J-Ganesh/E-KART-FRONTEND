@@ -14,7 +14,7 @@ import { useState } from "react";
 import AddProduct from "../AddProduct/AddProduct";
 import { toaster } from "../../utils/toast";
 import Badge from '@mui/material/Badge';
-
+import HistoryIcon from '@mui/icons-material/History';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -109,6 +109,13 @@ const Header = ({ search, setSearch }) => {
         navigate("/wishlist")
     }
 
+    const navigateToOrderHistory = () => {
+        if (isAuthenticationRequired()) {
+            return true
+        }
+        navigate("/Order-History")
+    }
+
     const user = () => {
         if (isAuthenticationRequired()) {
             return true
@@ -145,6 +152,11 @@ const Header = ({ search, setSearch }) => {
                 {!auth.isLogin && <div className="header_login" onClick={() => isAuthenticationRequired()}>
                     Login
                 </div>}
+
+                {!auth.isAdmin && <div className="header_icons" onClick={navigateToOrderHistory}>
+                    <HistoryIcon title="Order History" sx={{ fontSize: 25 }} />
+                </div>}
+
                 <Badge badgeContent={wishlist?.product?.length ? wishlist?.product?.length : ""} >
                     {!auth.isAdmin && <div className="header_icons" onClick={navigateToWishlist}>
                         <FavoriteBorderOutlinedIcon title="add to wishlist" sx={{ fontSize: 25 }} />
@@ -162,6 +174,8 @@ const Header = ({ search, setSearch }) => {
                 {auth.isLogin && <div className="header_icons" onClick={logout}>
                     <PowerSettingsNewOutlinedIcon sx={{ fontSize: 25 }} />
                 </div>}
+
+
             </div>
 
         </div >
