@@ -29,6 +29,7 @@ function App() {
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const [path, setPath] = useState("/")
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const auth = localStorage.getItem("auth");
@@ -59,7 +60,7 @@ function App() {
             <Route path="/" element={<Intro />} />
             <Route path="/home-new" element={<React.Fragment><Header /><HomeNew /></React.Fragment>} />
             <Route path="/login" element={<Signup />} />
-            <Route path="/home" element={<React.Fragment><Header /><Homepage /></React.Fragment>} />
+            <Route path="/home" element={<React.Fragment><Header setSearch={setSearch} search={search} /><Homepage search={search} /></React.Fragment>} />
             <Route path="/home/:id" element={<React.Fragment><Header /><ProductDetails /></React.Fragment>} />
             <Route path="/cart" element={<React.Fragment><Header /><Cart /></React.Fragment>} />
             <Route path="/choose-address" element={<React.Fragment><Header /><AddandDeleteAddress /></React.Fragment>} />

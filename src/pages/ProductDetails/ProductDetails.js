@@ -32,7 +32,6 @@ const ProductDetails = (props) => {
         addToWishlist(id)
             .then((res) => {
                 setIsAddedToWishlist(true);
-                console.log("response", res);
             })
             .catch((err) => console.error("error", err));
     };
@@ -41,7 +40,6 @@ const ProductDetails = (props) => {
         removeFromWishList(id)
             .then((res) => {
                 setIsAddedToWishlist(false);
-                console.log("response", res);
             })
             .catch((err) => console.error("error", err));
     };

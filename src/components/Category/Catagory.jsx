@@ -41,7 +41,7 @@ const Category = props => {
     return (
         <div className="catagories" >
             <span className={`catagory ${product.selectedCategory === "" ? "selected_category" : ""}`} onClick={() => setCategory("")}>ALL</span>
-            {categories.map(category => <span onClick={() => setCategory(category.name)} className={`catagory ${product.selectedCategory === category.name ? "selected_category" : ""}`}>{category.name}</span>)}
+            {categories.map((category, index) => <span key={index} onClick={() => setCategory(category.name)} className={`catagory ${product.selectedCategory === category.name ? "selected_category" : ""}`}>{category.name}</span>)}
         </div>
     )
 }

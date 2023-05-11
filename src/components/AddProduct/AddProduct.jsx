@@ -93,7 +93,7 @@ function AddProduct(props) {
   return (
     <div className="add_product">
       <div className="add_products_fields">
-        <div class="text-box">
+        <div className="text-box">
           <TextField
             id="outlined-basic"
             onChange={(event) => setProductObj(prev => ({ ...prev, title: event.target.value }))}
@@ -103,7 +103,7 @@ function AddProduct(props) {
             value={productObj.title}
           />
         </div>
-        <div class="text-box">
+        <div className="text-box">
           <TextField
             id="outlined-basic"
             label="Manufacturer"
@@ -113,7 +113,7 @@ function AddProduct(props) {
             value={productObj.manufacturer}
           />
         </div>
-        <div class="text-box">
+        <div className="text-box">
           <TextField
             id="outlined-basic"
             onChange={(event) => setProductObj(prev => ({ ...prev, realPrice: event.target.value, buyprice: event.target.value }))}
@@ -123,7 +123,7 @@ function AddProduct(props) {
             value={productObj.realPrice}
           />
         </div>
-        <div class="text-box">
+        <div className="text-box">
           <TextField
             onChange={(event) => setProductObj(prev => ({ ...prev, discountedPrice: event.target.value }))}
             id="outlined-basic"
@@ -135,7 +135,7 @@ function AddProduct(props) {
         </div>
 
 
-        <div class="text-box">
+        <div className="text-box">
           <TextField
             onChange={(event) => setProductObj(prev => ({ ...prev, quantity: event.target.value }))}
             id="outlined-basic"
@@ -146,7 +146,7 @@ function AddProduct(props) {
           />
         </div>
 
-        <div class="text-box">
+        <div className="text-box">
           <TextField
             id="outlined-basic"
             onChange={(event) => setProductObj(prev => ({ ...prev, image: event.target.value }))}
@@ -157,7 +157,7 @@ function AddProduct(props) {
           />
         </div>
 
-        <div class="text-box">
+        <div className="text-box">
           <TextField
             onChange={(event) => setProductObj(prev => ({ ...prev, category: event.target.value }))}
             id="outlined-basic"
@@ -168,7 +168,7 @@ function AddProduct(props) {
           />
 
         </div>
-        <div class="text-box big-text">
+        <div className="text-box big-text">
           <TextField
             onChange={(event) => setProductObj(prev => ({ ...prev, description: event.target.value }))}
             id="outlined-basic"
