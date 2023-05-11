@@ -23,6 +23,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import SaleAnalysis from "./pages/SaleAnalysis/SaleAnalysis";
 import AddandDeleteAddress from "./pages/Cart/AddandDeleteAddress";
+import Order_History from "./pages/Order_History/Order_History";
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
             <Route path="/home/:id" element={<React.Fragment><Header /><ProductDetails /></React.Fragment>} />
             <Route path="/cart" element={<React.Fragment><Header /><Cart /></React.Fragment>} />
             <Route path="/choose-address" element={<React.Fragment><Header /><AddandDeleteAddress /></React.Fragment>} />
+            <Route path="/Order-History" element={<React.Fragment><Header /><Order_History /></React.Fragment>} />
 
             <Route path="/address" element={<React.Fragment><Header /><AddressDetails /></React.Fragment>} />
             <Route path="/add-product" element={<React.Fragment><Header /><AddProduct /></React.Fragment>} />
