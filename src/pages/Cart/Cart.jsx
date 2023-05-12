@@ -44,25 +44,32 @@ const Cart = (props) => {
         }
     }
 
-    const deleteFromCart = async (id)=>{
-        try{
+    const deleteFromCart = async (id) => {
+        try {
             await deleteCartItem(id);
             getCartItems()
-        } catch (e){
+        } catch (e) {
             console.log(e)
         }
-    } 
+    }
 
-    const addItemToWishlist = async(id)=>{
-        try{
-          await addToWishlist(id)
-        } catch(error){
+    const addItemToWishlist = async (id) => {
+        try {
+            await addToWishlist(id)
+        } catch (error) {
 
         }
     }
 
     return (
         <div className="product_cart" >
+            <div className="cartHeadNames-order">
+                <div className="cart_Heading" style={{ color: "#9D9D9D" }}>
+                    {" "}
+                    Home /&nbsp;
+                </div>
+                <div className="cart_Heading_inner"> My Cart</div>
+            </div>
             {cart && cart.product && <div className="cart">
                 {cart.product.map(product => (
                     <div className="cart_item">
@@ -84,8 +91,8 @@ const Cart = (props) => {
                             <button className="cart_add" onClick={() => addToCartList(product.productId)}>+</button>
                             <div className="cart_count">{product.quantity}</div>
                             <button className="cart_remove" onClick={() => removeFromCartList(product.productId)}>-</button>
-                            <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={()=> deleteFromCart(product.productId)}>Remove</a>
-                            <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={()=> addItemToWishlist(product.productId)}>Add To Wishlist</a>
+                            <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={() => deleteFromCart(product.productId)}>Remove</a>
+                            <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={() => addItemToWishlist(product.productId)}>Add To Wishlist</a>
                         </div>
                     </div>
                 ))}
