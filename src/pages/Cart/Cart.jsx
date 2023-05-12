@@ -71,8 +71,8 @@ const Cart = (props) => {
                 <div className="cart_Heading_inner"> My Cart</div>
             </div>
             {cart && cart.product && <div className="cart">
-                {cart.product.map(product => (
-                    <div className="cart_item">
+                {cart.product.map((product, index) => (
+                    <div className="cart_item" key={index}>
                         <div className="cart_item_details">
                             <div className="cart_item_image">
                                 <img style={{ width: "4rem", height: "85%" }} src={product.image} alt="product" />

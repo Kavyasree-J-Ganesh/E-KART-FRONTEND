@@ -8,27 +8,27 @@ import { useNavigate } from "react-router-dom";
 
 
 const HomeNew = () => {
-    const categories = useSelector(state=> state.categories)
-    const dispatch = useDispatch()
-    const navigate = useNavigate();
+  const categories = useSelector(state => state.categories)
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
 
-    const getCategoryList =  async ()=>{
-      const result = await getCategories();
-      
-      dispatch({type: "SET_CATEGORIES", payload: result.data.data})
-      
-    }
+  const getCategoryList = async () => {
+    const result = await getCategories();
 
-    useState(()=>{
-      getCategoryList()
-    }, [])
+    dispatch({ type: "SET_CATEGORIES", payload: result.data.data })
+
+  }
+
+  useState(() => {
+    getCategoryList()
+  }, [])
 
 
-    return (
-        <div className={classes.cart_list}>
-           {categories.map(category=> <CatoryNew category={category}  />)}
-        </div>
-    )
+  return (
+    <div className={classes.cart_list}>
+      {categories.map((category, index) => <CatoryNew category={category} key={index} />)}
+    </div>
+  )
 }
 
 export default HomeNew
