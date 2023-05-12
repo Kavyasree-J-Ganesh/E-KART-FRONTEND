@@ -80,7 +80,7 @@ const Cart = (props) => {
                             <div className="cart_item_desc">
                                 <h6 className="cart_item_heading">{product.title}</h6>
                                 <div className="cart_item_author">by {product.manufacturer}</div>
-                                <div class="cart_item_price">
+                                <div className="cart_item_price">
                                     <span className="cart_item_price">{`Rs. ${product.discountedPrice}`}</span>
                                     <span className="cart_item_discount_price">{`Rs. ${product.realPrice}`}</span>
                                 </div>
