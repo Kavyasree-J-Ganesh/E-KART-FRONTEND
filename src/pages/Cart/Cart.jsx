@@ -98,7 +98,8 @@ const Cart = (props) => {
                     PLACE ORDER
                 </button>
             </div>}
-        </div>)
+        </div>
+    )
 }
 
 
