@@ -5,6 +5,7 @@ import "./Cart.css";
 import { addToCart, getCart, removeFromCart, deleteCartItem } from "../../Services/cartService"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { addToWishlist } from "../../Services/WishlistService";
 
 const Cart = (props) => {
 
@@ -50,6 +51,14 @@ const Cart = (props) => {
         } catch (e){
             console.log(e)
         }
+    } 
+
+    const addItemToWishlist = async(id)=>{
+        try{
+          await addToWishlist(id)
+        } catch(error){
+
+        }
     }
 
     return (
@@ -76,7 +85,7 @@ const Cart = (props) => {
                             <div className="cart_count">{product.quantity}</div>
                             <button className="cart_remove" onClick={() => removeFromCartList(product.productId)}>-</button>
                             <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={()=> deleteFromCart(product.productId)}>Remove</a>
-                            <a style={{ fontSize: "12px" }} className="cart_remove_all">Add To Wishlist</a>
+                            <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={()=> addItemToWishlist(product.productId)}>Add To Wishlist</a>
                         </div>
                     </div>
                 ))}
