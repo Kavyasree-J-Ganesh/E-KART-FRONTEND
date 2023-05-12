@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import React from 'react';
 import Header from "../../components/Header/Header";
 import "./Cart.css";
-import { addToCart, getCart, removeFromCart } from "../../Services/cartService"
+import { addToCart, getCart, removeFromCart, deleteCartItem } from "../../Services/cartService"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -43,6 +43,15 @@ const Cart = (props) => {
         }
     }
 
+    const deleteFromCart = async (id)=>{
+        try{
+            await deleteCartItem(id);
+            getCartItems()
+        } catch (e){
+            console.log(e)
+        }
+    }
+
     return (
         <div className="product_cart" >
             {cart && cart.product && <div className="cart">
@@ -66,7 +75,7 @@ const Cart = (props) => {
                             <button className="cart_add" onClick={() => addToCartList(product.productId)}>+</button>
                             <div className="cart_count">{product.quantity}</div>
                             <button className="cart_remove" onClick={() => removeFromCartList(product.productId)}>-</button>
-                            <a style={{ fontSize: "12px" }} className="cart_remove_all">Remove</a>
+                            <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={()=> deleteFromCart(product.productId)}>Remove</a>
                             <a style={{ fontSize: "12px" }} className="cart_remove_all">Add To Wishlist</a>
                         </div>
                     </div>

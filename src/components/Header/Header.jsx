@@ -124,7 +124,7 @@ const Header = ({ search, setSearch }) => {
     }
 
     const handleSubmit = (e) => {
-        setSearch(e.target.value)
+        dispatch({type:"SET_SEARCH_TEXT", payload: e.target.value})
     }
 
     return (

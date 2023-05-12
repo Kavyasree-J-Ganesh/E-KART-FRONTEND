@@ -167,3 +167,38 @@
         transform: translateX(0);
     }
 }
+
+@media screen and (max-width:1240px) {
+    .heading-primary .heading-primary-main{
+        letter-spacing: 2rem;
+        font-size: 4rem;  
+    }
+
+    .heading-primary .heading-primary-sub {  
+        font-size: 1.5rem;
+        letter-spacing: .75rem;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .heading-primary .heading-primary-main{
+        letter-spacing: 1.1rem;
+        font-size: 2.8rem;  
+    }
+
+    .heading-primary .heading-primary-sub {  
+        font-size: 1.20rem;
+        letter-spacing: .4rem;
+    }
+
+    .header .text-box{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .header .text-box{
+        width: 100%;
+    }
+}
+

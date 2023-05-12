@@ -1,6 +1,7 @@
 const initialState = {
 	products: [],
-	selectedCategory: ""
+	selectedCategory: "",
+	searchText: ""
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -15,6 +16,12 @@ export const productReducer = (state = initialState, action) => {
 				...state,
 				selectedCategory: action.payload.category
 			};
+
+		case 'SET_SEARCH_TEXT':
+			return {
+				...state,
+				searchText: action.payload
+			}
 		default:
 			return state;
 	}

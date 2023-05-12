@@ -26,4 +26,10 @@ export const updateAddress = async () => {
     return result
 }
 
+export const deleteCartItem = async(id)=>{
+    const headerConfig = { headers: { Authorization: `bearer ${localStorage.getItem("auth")}` } }
+    const result = await axios.delete(`http://localhost:6060/api/v1/cart/${id}`, headerConfig)
+    return result
+}
+
 
