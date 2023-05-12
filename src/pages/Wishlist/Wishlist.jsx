@@ -11,6 +11,7 @@ import {
   addToWishlist,
   removeFromWishList,
 } from "../../Services/WishlistService";
+import { addToCart } from "../../Services/cartService";
 
 function Wishlist(props) {
   const [wishlist, setWishlist] = useState([]);
@@ -37,15 +38,13 @@ function Wishlist(props) {
 
   const addToCartList = async (id) => {
     try {
-      await addToWishlist(id);
-      getCartItems();
-      navigate("/cart")
+     await addToCart(id)
     } catch (e) {
       console.log(e);
     }
   };
 
-  const removeFromCartList = async (id) => {
+  const removeItemFromWishList = async (id) => {
     try {
       await removeFromWishList(id);
       getCartItems();
@@ -56,70 +55,31 @@ function Wishlist(props) {
 
 
   return (
-    <div>
-      <div className="cartMainBox">
-        <div className="page-dir" style={{ color: "#9D9D9D" }}>
-          Home /
-        </div>
-        <div className="page-dir"> My Wishlist</div>
-      </div>
-      <div className="mainMyCArtt">
-        <div className="HeadingOfMyCartog">
-          <div className="MycartLeftHeading">
-            My Wishlist
-          </div>
-        </div>
-        {wishlist && (
-          <div className="productSectionOfmyCart">
-            {wishlist.map((product, index) => (
-              <div className="productsArrayMyArt" key="index">
-                <div className="imgInMyCartOfproduct">
-                  <img
-                    src={product.Image}
-                    height={"85px"}
-                    alt="product"
-                    width={"60px"}
-                  />
-                </div>
-                <div className="productrightcontntmtcrt">
-                  <div className="titleMyproductcrt">
-                    {product.title}
-                    <Button
-                      onClick={() => removeFromCartList(product.productId)}
-                      variant={"text"}
-                    >
-                      <DeleteIcon style={{ color: "#999e9e" }} />
-                    </Button>
-                  </div>
-                  <div
-                    className="author"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: "25px",
-                      marginLeft: "auto",
-                    }}
-                  >
-                    by {product.manufacturer}
-                  </div>
-
-                  <div className="price111cart">RS {product.discountedPrice}</div>
-                </div>
-                <button
-                  className="product_buy_wishlist"
-                  onClick={
-                    isAddedToWishlist
-                      ? removeFromCartList
-                      : addToCartList
-                  }
-                >
-                  {isAddedToWishlist ? "Go to Cart" : "Add To Cart"}
-                </button>
+    <div className="product_cart" >
+      {wishlist && <div className="cart">
+        {wishlist.map(product => (
+          <div className="cart_item">
+            <div className="cart_item_details">
+              <div className="cart_item_image">
+                <img style={{ width: "4rem", height: "85%" }} src={product.Image} alt="product" />
               </div>
-            ))}
+              <div className="cart_item_desc">
+                <h6 className="cart_item_heading">{product.title}</h6>
+                <div className="cart_item_author">by {product.manufacturer}</div>
+                <div class="cart_item_price">
+                  <span className="cart_item_price">{`Rs. ${product.discountedPrice}`}</span>
+                  <span className="cart_item_discount_price">{`Rs. ${product.realPrice}`}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="cart_add_or_remove">
+              <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={()=> removeItemFromWishList(product.productId)}>Remove</a>
+              <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={()=> addToCartList(product.productId)}>Add To Cart</a>
+            </div>
           </div>
-        )}
-      </div>
+        ))}
+      </div>}
     </div>
   );
 }
