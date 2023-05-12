@@ -16,7 +16,7 @@ import { toaster } from "../../utils/toast";
 const ProductDetails = (props) => {
     let { id } = useParams();
     const [product, setProduct] = useState(null);
-    const {cart, auth} = useSelector(state => state)
+    const { cart, auth } = useSelector(state => state)
     const [currentProduct, setCurrentProduct] = useState(null)
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -39,8 +39,8 @@ const ProductDetails = (props) => {
 
 
     const handleAddToWishList = () => {
-        if(isAuthenticationRequired()){
-            return 
+        if (isAuthenticationRequired()) {
+            return
         }
         addToWishlist(id)
             .then((res) => {
@@ -50,8 +50,8 @@ const ProductDetails = (props) => {
     };
 
     const handleRemoveFromWishList = () => {
-        if(isAuthenticationRequired()){
-            return 
+        if (isAuthenticationRequired()) {
+            return
         }
         removeFromWishList(id)
             .then((res) => {
@@ -81,8 +81,8 @@ const ProductDetails = (props) => {
     }
 
     const addToCartList = async () => {
-        if(isAuthenticationRequired()){
-            return 
+        if (isAuthenticationRequired()) {
+            return
         }
         if (currentProduct?.quantity) {
             navigate("/cart")
@@ -94,7 +94,7 @@ const ProductDetails = (props) => {
                 console.log(e)
             }
         }
-       
+
     }
 
     const removeFromCartList = async () => {
@@ -157,7 +157,7 @@ const ProductDetails = (props) => {
                                 </span>
                                 <span className="product_review_count">{product.reviewcount}</span>
                             </div>}
-                            <div class="product_price">
+                            <div className="product_price">
                                 <span className="product_details_price">{`Rs. ${product.discountedPrice}`}</span>
                                 <span className="product_details_discount_price">{`Rs. ${product.realPrice}`}</span>
                             </div>

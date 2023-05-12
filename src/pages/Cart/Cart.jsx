@@ -71,8 +71,8 @@ const Cart = (props) => {
                 <div className="cart_Heading_inner"> My Cart</div>
             </div>
             {cart && cart.product && <div className="cart">
-                {cart.product.map(product => (
-                    <div className="cart_item">
+                {cart.product.map((product, index) => (
+                    <div className="cart_item" key={index}>
                         <div className="cart_item_details">
                             <div className="cart_item_image">
                                 <img style={{ width: "4rem", height: "85%" }} src={product.image} alt="product" />
@@ -80,7 +80,7 @@ const Cart = (props) => {
                             <div className="cart_item_desc">
                                 <h6 className="cart_item_heading">{product.title}</h6>
                                 <div className="cart_item_author">by {product.manufacturer}</div>
-                                <div class="cart_item_price">
+                                <div className="cart_item_price">
                                     <span className="cart_item_price">{`Rs. ${product.discountedPrice}`}</span>
                                     <span className="cart_item_discount_price">{`Rs. ${product.realPrice}`}</span>
                                 </div>

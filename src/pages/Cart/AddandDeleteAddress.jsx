@@ -58,8 +58,8 @@ function AddandDeleteAddress() {
               </button>
             </div>
             <div className="productSectionOfmyCart-address">
-              {itemInpage.map((product) => (
-                <div className="productsArrayMyArt-address">
+              {itemInpage.map((product, index) => (
+                <div className="productsArrayMyArt-address" key={index}>
                   <div
                     className="productrightcontntmtcrt-address"
                     onClick={() => {
