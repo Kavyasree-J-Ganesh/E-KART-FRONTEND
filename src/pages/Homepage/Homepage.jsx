@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Homepage = props => {
     const product = useSelector(state=> state.product)
-    const [productList, setProductList] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,17 +17,18 @@ const Homepage = props => {
         getCartItems()
     }, [])
 
-    useEffect(() => {
-        setProductList(product?.products)
-    }, [product])
+    async function getProductList() {
+        try {
+            const products = await getProducts(product.selectedCategory, props.search);
+            dispatch({ type: "SET_PRODUCTS", payload: products.data })
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     useEffect(() => {
-        if (props.search) {
-            searchText(props.search).then(res => {
-                setProductList(res.data.data)
-            }).catch(err => console.error("error :",err))
-        }
-    }, [props])
+        getProductList()
+    }, [product.searchText, product.selectedCategory])
 
 
 
@@ -43,7 +43,7 @@ const Homepage = props => {
 
     async function getProductList() {
         try {
-            const products = await getProducts(product.selectedCategory);
+            const products = await getProducts(product.selectedCategory,product.searchText);
             dispatch({type:"SET_PRODUCTS", payload: products.data})
         } catch (e) {
             console.log(e)
@@ -53,7 +53,7 @@ const Homepage = props => {
         <div className="homepage">
             <Category/>
             <div className="homepage_products">
-                 {productList?.map((product, index)=> <React.Fragment key={index}><Product product={product}/></React.Fragment>)}
+                 {product?.products?.map((product, index)=> <React.Fragment key={index}><Product product={product}/></React.Fragment>)}
             </div>
         </div>
     )

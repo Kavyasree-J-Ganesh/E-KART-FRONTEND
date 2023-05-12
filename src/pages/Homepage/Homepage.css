@@ -5,6 +5,10 @@
     padding: 20px 10%;
 }
 
+.homepage_products >*{
+    max-width: 300px;
+}
+
 .homepage_header{
     padding: 12px 12% 0 10%;
 }

@@ -1,13 +1,16 @@
 import axios from "axios"
 
 
-export const getProducts = async (category) => {
+export const getProducts = async (category,searchText) => {
     const headerConfig = {
         headers: { Authorization: `bearer ${localStorage.getItem("auth")}` },
         params: {
             category
         }
     };
+
+   
+    headerConfig.params.searchText = searchText
     const result = await axios.get("http://localhost:6060/api/v1/product", headerConfig)
     return result
 }
