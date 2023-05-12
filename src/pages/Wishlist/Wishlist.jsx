@@ -38,7 +38,7 @@ function Wishlist(props) {
 
   const addToCartList = async (id) => {
     try {
-     await addToCart(id)
+      await addToCart(id)
     } catch (e) {
       console.log(e);
     }
@@ -56,6 +56,13 @@ function Wishlist(props) {
 
   return (
     <div className="product_cart" >
+      <div className="cartHeadNames-order">
+        <div className="Wishlist_Heading" style={{ color: "#9D9D9D" }}>
+          {" "}
+          Home /&nbsp;
+        </div>
+        <div className="Wishlist_Heading_inner"> My Wishlist</div>
+      </div>
       {wishlist && <div className="cart">
         {wishlist.map(product => (
           <div className="cart_item">
@@ -74,8 +81,8 @@ function Wishlist(props) {
             </div>
 
             <div className="cart_add_or_remove">
-              <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={()=> removeItemFromWishList(product.productId)}>Remove</a>
-              <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={()=> addToCartList(product.productId)}>Add To Cart</a>
+              <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={() => removeItemFromWishList(product.productId)}>Remove</a>
+              <a style={{ fontSize: "12px" }} className="cart_remove_all" onClick={() => addToCartList(product.productId)}>Add To Cart</a>
             </div>
           </div>
         ))}
