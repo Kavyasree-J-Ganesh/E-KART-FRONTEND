@@ -29,7 +29,6 @@ function CheckoutForm() {
             });
             await createOrder({address: address.selectedAddress, product: cart.product})
         } catch(error){
-            await createOrder({address: address.selectedAddress, product: cart.product})
         }
        
         
