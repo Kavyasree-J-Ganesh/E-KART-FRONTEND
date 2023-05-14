@@ -56,7 +56,7 @@ function OrderHistory() {
                             <div className="order_item" key={index}>
                                 <div className="order_item_details">
                                     <div className="order_item_image">
-                                        <img style={{ width: "4rem", height: "85%" }} src={product.image} alt="product" />
+                                        <img style={{ width: "4rem", height: "5rem" }} src={product.image} alt="product" />
                                     </div>
                                     <div className="order_item_desc">
                                         <h6 className="order_item_heading">{product.title}</h6>

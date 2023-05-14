@@ -70,7 +70,7 @@ const Cart = (props) => {
                 </div>
                 <div className="cart_Heading_inner"> My Cart</div>
             </div>
-            {cart && cart.product && <div className="cart">
+            {cart && cart?.product?.length>0 && <div className="cart">
                 {cart.product.map((product, index) => (
                     <div className="cart_item" key={index}>
                         <div className="cart_item_details">
@@ -97,14 +97,19 @@ const Cart = (props) => {
                     </div>
                 ))}
             </div>}
-            {cart && cart.product && <div className="cart_place">
+            {cart && cart?.product?.length > 0 && <div className="cart_place">
                 <div className="cart_total" style={{ fontWeight: 600 }} >Total Amount : {cart.cart_total} </div>
                 <button className="cart_place_order" onClick={() => {
                     navigate("/choose-address");
-                }}>
+                }} disabled={!cart?.product?.length}>
                     PLACE ORDER
                 </button>
             </div>}
+            {
+            cart && cart?.product?.length === 0 && <div>
+                <p>Your cart is empty</p>
+            </div>
+            }
         </div>
     )
 }
