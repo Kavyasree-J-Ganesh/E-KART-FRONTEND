@@ -5,6 +5,7 @@ import { cartReducer } from './cartReducer';
 import { categoryReducer } from './categoryReducer';
 import { wishlistReducer } from './wishlistReducer';
 import { addressReducer } from './addressReducer';
+import { orderReducer } from './orderReducer';
 
 
 const reducer = combineReducers({
@@ -13,7 +14,8 @@ const reducer = combineReducers({
     cart: cartReducer,
     categories: categoryReducer,
     wishlist: wishlistReducer,
-    address: addressReducer
+    address: addressReducer,
+    orders: orderReducer
 });
 
 const store = createStore(reducer)
