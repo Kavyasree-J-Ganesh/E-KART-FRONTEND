@@ -13,7 +13,6 @@ function AddandDeleteAddress() {
   const [updateData, setUpdateData] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-
   useEffect(() => {
     getAddress()
       .then((res) => {
@@ -26,15 +25,14 @@ function AddandDeleteAddress() {
     setIsSubmitted(true);
   };
 
-
   const selectAddress = (address) => {
-    dispatch({"type": "SELECT_ADDRESS", payload: address})
+    dispatch({ type: "SELECT_ADDRESS", payload: address });
     navigate("/address", {
       state: {
         isSubmitted: true,
       },
     });
-  }
+  };
 
   return (
     <div>
@@ -68,7 +66,7 @@ function AddandDeleteAddress() {
                 <div className="productsArrayMyArt-address" key={index}>
                   <div
                     className="productrightcontntmtcrt-address"
-                      onClick={() => selectAddress(product)}
+                    onClick={() => selectAddress(product)}
                   >
                     <div className="titleMyproductcrt-address">
                       Full name: {product.fullName}
@@ -99,7 +97,7 @@ function AddandDeleteAddress() {
                           justifyContent: "center",
                         }}
                         onClick={() => {
-                          deleteAddress(product.id)
+                          deleteAddress(product._id)
                             .then((res) => {
                               setUpdateData(!updateData);
                             })
