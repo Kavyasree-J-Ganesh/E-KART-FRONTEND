@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 
 function AddandDeleteAddress() {
-  let { id } = useParams();
   const address = useSelector((state) => state.address);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,9 +13,6 @@ function AddandDeleteAddress() {
   const [updateData, setUpdateData] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const stripePromise = loadStripe(
-    "pk_test_51N12BsSHL3ZIWrpnuCIcbFzlmfLfaiEHDVYHVQdtCGuZcvHFgXBcnDnUyGMzifalYZ9rS3dtbWhq0OBoNGc0ZjBc00LPxcU5Hr",
-  );
 
   useEffect(() => {
     getAddress()
@@ -29,6 +25,7 @@ function AddandDeleteAddress() {
   const handleSubmit = () => {
     setIsSubmitted(true);
   };
+
 
   const selectAddress = (address) => {
     dispatch({"type": "SELECT_ADDRESS", payload: address})

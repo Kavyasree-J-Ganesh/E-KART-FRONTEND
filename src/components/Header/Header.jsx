@@ -124,7 +124,7 @@ const Header = ({ search, setSearch }) => {
     }
 
     const handleSubmit = (e) => {
-        dispatch({type:"SET_SEARCH_TEXT", payload: e.target.value})
+        dispatch({ type: "SET_SEARCH_TEXT", payload: e.target.value })
     }
 
     return (
@@ -157,7 +157,7 @@ const Header = ({ search, setSearch }) => {
                     <HistoryIcon title="Order History" sx={{ fontSize: 25 }} />
                 </div>}
 
-                <Badge badgeContent={wishlist?.product?.length ? wishlist?.product?.length : ""} >
+                <Badge badgeContent={9} >
                     {!auth.isAdmin && <div className="header_icons" onClick={navigateToWishlist}>
                         <FavoriteBorderOutlinedIcon title="add to wishlist" sx={{ fontSize: 25 }} />
                     </div>}
@@ -174,10 +174,7 @@ const Header = ({ search, setSearch }) => {
                 {auth.isLogin && <div className="header_icons" onClick={logout}>
                     <PowerSettingsNewOutlinedIcon sx={{ fontSize: 25 }} />
                 </div>}
-
-
             </div>
-
         </div >
     )
 }

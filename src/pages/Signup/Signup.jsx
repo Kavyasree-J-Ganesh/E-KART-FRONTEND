@@ -3,10 +3,16 @@ import "./Signup.css";
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { signup, signin  } from "../../Services/UserService";
+import { signup, signin } from "../../Services/UserService";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toaster } from "../../utils/toast";
+
+
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 
 
 const emailRegex = /^[A-Za-z0-9][A-Za-z0-9+-]*[.]?[A-Za-z0-9+-]+@[A-Za-z0-9][A-Za-z0-9+-]*(.[A-Za-z0-9]+)?.[A-Za-z]{2,6}$/
@@ -38,7 +44,7 @@ const INITIAL_VALIDITY_OBJ = {
   confirmPasswordHelper: "",
   isConfirmPasswordInvalid: false,
   isCompanyNameInvalid: false,
-  companyNameHelper:"",
+  companyNameHelper: "",
 
 }
 
@@ -51,7 +57,9 @@ function SignUp() {
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
-  
+
+  const [showPassword, setShowPassword] = useState(false);
+
 
   function onEmailChange(event) {
     setsignupObj((prev) => { return { ...prev, email: event.target.value } })
@@ -78,8 +86,8 @@ function SignUp() {
     setsignupObj((prev) => { return { ...prev, companyname: event.target.value } })
   }
 
-  const setSeller = ()=>{
-    setIsSeller(prevIsSeller=> !prevIsSeller)
+  const setSeller = () => {
+    setIsSeller(prevIsSeller => !prevIsSeller)
     signupObj.companyname = ""
   }
 
@@ -89,7 +97,7 @@ function SignUp() {
     let passwordValid = !isSignUp || passwordRegex.test(signupObj.password)
     let firstnameValid = !isSignUp || firstnameRegex.test(signupObj.firstname)
     let mobileNumberValid = !isSignUp || mobileRegex.test(signupObj.phonenumber)
-   
+
 
     if (!isEmailValid) {
       setValidityObj(prev => { return { ...prev, isEmailInvalid: true, emailHelper: "Invalid email" } })
@@ -100,29 +108,29 @@ function SignUp() {
 
     if (!passwordValid) {
       setValidityObj(prev => { return { ...prev, isPasswordInvalid: true, passwordHelper: "Invalid password" } })
-      if(isSignUp) return;
-      
+      if (isSignUp) return;
+
     } else {
       setValidityObj(prev => { return { ...prev, isPasswordInvalid: false, passwordHelper: "" } })
     }
 
     if (!firstnameValid) {
       setValidityObj(prev => { return { ...prev, isFirstNameInvalid: true, firstNameHelper: "Invalid firstname" } })
-      if(isSignUp) return;
+      if (isSignUp) return;
     } else {
       setValidityObj(prev => { return { ...prev, isFirstNameInvalid: false, firstNameHelper: "" } })
     }
 
     if (!mobileNumberValid) {
       setValidityObj(prev => { return { ...prev, isMobileInvalid: true, mobileHelper: "Invalid mobile number" } })
-      if(isSignUp) return;
+      if (isSignUp) return;
     } else {
       setValidityObj(prev => { return { ...prev, isMobileInvalid: false, mobileHelper: "" } })
     }
 
-    if(isSeller && signupObj.companyname == ""){
+    if (isSeller && signupObj.companyname == "") {
       setValidityObj(prev => { return { ...prev, isCompanyNameInvalid: true, companyNameHelper: "Invalid company name" } })
-      if(isSignUp) return;
+      if (isSignUp) return;
     } else {
       setValidityObj(prev => { return { ...prev, isCompanyNameInvalid: false, companyNameHelper: "" } })
     }
@@ -130,35 +138,35 @@ function SignUp() {
 
     if (passwordValid && signupObj.password != signupObj.confirmpassword) {
       setValidityObj(prev => { return { ...prev, isConfirmPasswordInvalid: true, confirmPasswordHelper: "Password does not match" } })
-      if(isSignUp) return;
+      if (isSignUp) return;
     } else {
 
       setValidityObj(prev => { return { ...prev, isConfirmPasswordInvalid: false, confirmPasswordHelper: "" } })
     }
 
     try {
-      let {companyname, ...nonAdminObj} = signupObj
-      const result = isSignUp ?  await signup(
-        isSeller ? {...signupObj, isAdmin:true} : nonAdminObj 
-      ) : await signin({email:signupObj.email, password: signupObj.password})
+      let { companyname, ...nonAdminObj } = signupObj
+      const result = isSignUp ? await signup(
+        isSeller ? { ...signupObj, isAdmin: true } : nonAdminObj
+      ) : await signin({ email: signupObj.email, password: signupObj.password })
 
-      if(!isSignUp){
-          const token = result.data.token;
-          localStorage.setItem("auth", token)
-          localStorage.setItem("isAdmin", result.data.isAdmin)
-          dispatch({type: "LOGIN", payload: result.data})
-          setTimeout(()=>navigate(!result.data.isAdmin? "./home": "./sale_analysis"), 100)
+      if (!isSignUp) {
+        const token = result.data.token;
+        localStorage.setItem("auth", token)
+        localStorage.setItem("isAdmin", result.data.isAdmin)
+        dispatch({ type: "LOGIN", payload: result.data })
+        setTimeout(() => navigate(!result.data.isAdmin ? "./home" : "./sale_analysis"), 100)
       }
-     toaster("info", result.data.message )
-     if(isSignUp){
-       setIsSignUp(false)
-       toaster("info", "Login to access your account" )
-       setsignupObj(INITIAL_SIGNUP_OBJ)
-     }
-  } catch (e) {
-    console.log(e)
-    toaster("error", e.message )
-  }
+      toaster("info", result.data.message)
+      if (isSignUp) {
+        setIsSignUp(false)
+        toaster("info", "Login to access your account")
+        setsignupObj(INITIAL_SIGNUP_OBJ)
+      }
+    } catch (e) {
+      console.log(e)
+      toaster("error", e.message)
+    }
 
 
   }
@@ -174,7 +182,7 @@ function SignUp() {
       <h2 className="signup-page_heading">{isSignUp ? "Signup" : "Login"}</h2>
       <div className="form">
         <form action="">
-          
+
           {isSignUp && <div className="text-box">
             <TextField
               value={signupObj.firstname}
@@ -235,7 +243,7 @@ function SignUp() {
             />
           </div>}
 
-          <div className="text-box">
+          {/* <div className="text-box">
             <TextField
               value={signupObj.password}
               id="outlined-basic"
@@ -245,7 +253,29 @@ function SignUp() {
               error={validityObj.isPasswordInvalid}
               helperText={validityObj.passwordHelper}
               onChange={onPasswordChange} />
+          </div> */}
+
+          <div className="text-box">
+            <TextField
+              value={signupObj.password}
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              size="small"
+              error={validityObj.isPasswordInvalid}
+              helperText={validityObj.passwordHelper}
+              type={showPassword ? "text" : "password"}
+              onChange={onPasswordChange}
+            />
+            <IconButton
+              onClick={() => setShowPassword(!showPassword)}
+              edge="end"
+              size="large"
+            >
+              {showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
           </div>
+
 
           {isSignUp && <div className="text-box">
             <TextField
@@ -261,10 +291,10 @@ function SignUp() {
               onChange={onconfirmpasswordChange} />
           </div>}
           {isSignUp &&
-          <FormControlLabel control={<Switch color="default" onChange={()=> setSeller()} />} label="Become a seller" />}
+            <FormControlLabel control={<Switch color="default" onChange={() => setSeller()} />} label="Become a seller" />}
           <div className="form_footer">
             <button className="button_info" onClick={onSubmit}>{isSignUp ? "Sign up" : "Sign in"}</button>
-            <a className="button_toggle"  onClick={() => { changeMode() }}>{isSignUp ? 'Sign in instead' : 'Create Account'}</a>
+            <a className="button_toggle" onClick={() => { changeMode() }}>{isSignUp ? 'Sign in instead' : 'Create Account'}</a>
           </div>
 
         </form>
