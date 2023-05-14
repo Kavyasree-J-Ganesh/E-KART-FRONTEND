@@ -1,10 +1,10 @@
-const initialDrawerState = {
+const initialState = {
 	
 	cart: null,
 	
 };
 
-export const cartReducer = (state = initialDrawerState, action) => {
+export const cartReducer = (state = initialState, action) => {
 	switch (action.type) {
         case 'SET_CART':
 			return action.payload

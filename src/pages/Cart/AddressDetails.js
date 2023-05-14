@@ -9,10 +9,11 @@ import { useEffect } from "react";
 import CheckoutForm from "./Checkoutform";
 // import { createAddress } from "../../Services/AddressService";
 import { createAddress } from "./../../Services/AddressService";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function AddressDetails() {
+  const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
   const [fullNameError, setFullNameError] = useState(false);
 
@@ -116,6 +117,7 @@ function AddressDetails() {
     createAddress(data)
       .then((res) => {
         toast.success("Address Added")
+        navigate("/choose-address")
       })
       .catch((err) => console.log("address Not added", err));
     setIsSubmitted(true);

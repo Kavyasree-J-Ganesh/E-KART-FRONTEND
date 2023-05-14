@@ -1,6 +1,6 @@
-const initialDrawerState = []
+const initialState = []
 
-export const categoryReducer = (state = initialDrawerState, action) => {
+export const categoryReducer = (state = initialState, action) => {
 	switch (action.type) {
         case 'SET_CATEGORIES':
 			return action.payload

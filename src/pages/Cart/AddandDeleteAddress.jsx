@@ -25,6 +25,17 @@ function AddandDeleteAddress() {
   const handleSubmit = () => {
     setIsSubmitted(true);
   };
+
+
+  const selectAddress = (address) => {
+    dispatch({"type": "SELECT_ADDRESS", payload: address})
+    navigate("/address", {
+      state: {
+        isSubmitted: true,
+      },
+    });
+  }
+
   return (
     <div>
       <div>
@@ -57,13 +68,7 @@ function AddandDeleteAddress() {
                 <div className="productsArrayMyArt-address" key={index}>
                   <div
                     className="productrightcontntmtcrt-address"
-                    onClick={() => {
-                      navigate("/address", {
-                        state: {
-                          isSubmitted: true,
-                        },
-                      });
-                    }}
+                      onClick={() => selectAddress(product)}
                   >
                     <div className="titleMyproductcrt-address">
                       Full name: {product.fullName}
