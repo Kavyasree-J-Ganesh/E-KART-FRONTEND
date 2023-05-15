@@ -28,7 +28,7 @@ const ProductDetails = (props) => {
 
   const isAuthenticationRequired = () => {
     if (!auth.isLogin) {
-      toaster("info", "login/signup to continue");
+      // toaster("info", "login/signup to continue");
       dispatch({ type: "SET_LOGIN_REQUIRED" });
       return true;
     }

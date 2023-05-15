@@ -76,7 +76,7 @@ const Header = ({ search, setSearch }) => {
 
   const isAuthenticationRequired = () => {
     if (!auth.isLogin) {
-      toaster("info", "login/signup to continue");
+      // toaster("info", "login/signup to continue");
       dispatch({ type: "SET_LOGIN_REQUIRED" });
       return true;
     }
@@ -147,8 +147,8 @@ const Header = ({ search, setSearch }) => {
               value: search,
               onChange: handleSubmit,
             }}
-            // value={search}
-            // onChange={handleSubmit}
+          // value={search}
+          // onChange={handleSubmit}
           />
         </Search>
       </div>
