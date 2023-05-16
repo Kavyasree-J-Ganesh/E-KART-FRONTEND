@@ -1,14 +1,14 @@
 import axios from "axios";
 
-const headerConfig = {
-  headers: { Authorization: `bearer ${localStorage.getItem("auth")}` },
-};
 
 const getToken = () => {
   return localStorage.getItem("auth");
 };
 
 export const addToWishlist = async (id) => {
+  const headerConfig = {
+    headers: { Authorization: `bearer ${localStorage.getItem("auth")}` },
+  };
   const result = await axios.post(
     `http://localhost:6060/api/v1/wishlist/${id}`,
     {},
@@ -28,6 +28,9 @@ export const getWishlist = async () => {
 };
 
 export const removeFromWishList = async (id) => {
+  const headerConfig = {
+    headers: { Authorization: `bearer ${localStorage.getItem("auth")}` },
+  };
   const result = await axios.put(
     `http://localhost:6060/api/v1/wishlist/${id}`,
     {},

@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { toaster } from "../../utils/toast";
 import { deleteProduct, editProduct, getProducts, postProduct } from "../../Services/ProductService";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const INITIAL_PRODUCT = {
@@ -22,6 +22,7 @@ const INITIAL_PRODUCT = {
 function AddProduct(props) {
   const [productObj, setProductObj] = useState(INITIAL_PRODUCT)
   const dispatch = useDispatch();
+  const product = useSelector(state=> state.product)
 
   const cancelAddProduct = () => {
     props.close();
@@ -83,7 +84,7 @@ function AddProduct(props) {
 
   async function getProductList() {
     try {
-        const products = await getProducts(props.product.selectedCategory);
+        const products = await getProducts(product.selectedCategory,"");
         dispatch({type:"SET_PRODUCTS", payload: products.data})
     } catch (e) {
         console.log(e)
