@@ -106,8 +106,9 @@ const Cart = (props) => {
                 </button>
             </div>}
             {
-            cart && cart?.product?.length === 0 && <div>
+            cart && cart?.product?.length === 0 && <div className="empty_cart">
                 <p>Your cart is empty</p>
+                <button className="button_info" onClick={()=> navigate("/home")}>Shop Now</button>
             </div>
             }
         </div>

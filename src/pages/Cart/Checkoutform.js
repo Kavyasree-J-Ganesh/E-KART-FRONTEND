@@ -7,10 +7,12 @@ import React from "react";
 import "./Checkoutform.css";
 import { useSelector } from "react-redux";
 import { createOrder } from "../../Services/orderService";
+import { useNavigate } from "react-router-dom";
 
 function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const { cart, address } = useSelector((state) => state);
 
@@ -30,6 +32,7 @@ function CheckoutForm() {
           return_url: `${window.location.origin}/checkout`,
         },
       });
+      navigate("/checkout")
     } catch (error) { }
   };
   return (
