@@ -20,7 +20,6 @@
 
 .product_image{
     width:40%;
-    max-height: 350px;
 }
 
 .product_image img {
@@ -284,6 +283,20 @@
 
     .product_description{
         padding: 0px;
+    }
+
+    .product_image{
+
+    }
+
+    .product_image img{
+        max-height: 400px;
+    }
+}
+
+@media  screen and (min-width: 720px) {
+    .product_image{
+        max-height: 350px;
     }
 }
 
