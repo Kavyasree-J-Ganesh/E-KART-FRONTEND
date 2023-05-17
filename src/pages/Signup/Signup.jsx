@@ -4,8 +4,8 @@ import TextField from "@mui/material/TextField";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { signup, signin } from "../../Services/UserService";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { toaster } from "../../utils/toast";
 
 import IconButton from "@mui/material/IconButton";
@@ -54,6 +54,7 @@ function SignUp() {
   const [isSeller, setIsSeller] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const {auth} = useSelector(state=> state)
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -212,10 +213,13 @@ function SignUp() {
         localStorage.setItem("auth", token);
         localStorage.setItem("isAdmin", result.data.isAdmin);
         dispatch({ type: "LOGIN", payload: result.data });
-        setTimeout(
-          () => navigate(!result.data.isAdmin ? "./home" : "./sale_analysis"),
-          100,
-        );
+
+         if (result.data.isAdmin) {
+          navigate("./sale_analysis")
+        } else if(auth.loginPath && auth.loginPath != ""){
+          navigate(auth.loginPath)
+        }
+        
       }
       toaster("info", result.data.message);
       if (isSignUp) {

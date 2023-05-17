@@ -7,7 +7,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import PowerSettingsNewOutlinedIcon from "@mui/icons-material/PowerSettingsNewOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
@@ -65,19 +65,20 @@ const Header = ({ search, setSearch }) => {
   const navigate = useNavigate();
   const { auth, cart, wishlist } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const location = useLocation()
 
   const [isAddProduct, setIsAddProduct] = useState(false);
 
   const navigateToHome = () => {
-    if (auth.isLogin) {
+    
       navigate("/home");
-    }
+    
   };
 
-  const isAuthenticationRequired = () => {
+  const isAuthenticationRequired = (path) => {
     if (!auth.isLogin) {
       // toaster("info", "login/signup to continue");
-      dispatch({ type: "SET_LOGIN_REQUIRED" });
+      dispatch({ type: "SET_LOGIN_REQUIRED", payload: path });
       return true;
     }
 
@@ -93,21 +94,21 @@ const Header = ({ search, setSearch }) => {
   };
 
   const navigateToCart = () => {
-    if (isAuthenticationRequired()) {
+    if (isAuthenticationRequired("/cart")) {
       return true;
     }
     navigate("/cart");
   };
 
   const navigateToWishlist = () => {
-    if (isAuthenticationRequired()) {
+    if (isAuthenticationRequired("/wishlist")) {
       return true;
     }
     navigate("/wishlist");
   };
 
   const navigateToOrderHistory = () => {
-    if (isAuthenticationRequired()) {
+    if (isAuthenticationRequired("/order-history")) {
       return true;
     }
     navigate("/Order-History");

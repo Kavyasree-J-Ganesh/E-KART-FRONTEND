@@ -37,9 +37,9 @@ const Product = (props) => {
 
     return (
         <React.Fragment>
-            <Modal open={isAddProduct} close={() => setIsAddProduct(prev => !prev)} >
+            {isAddProduct && <Modal open={isAddProduct} close={() => setIsAddProduct(prev => !prev)} >
                 <AddProduct isNew={false} product={props.product} close={() => setIsAddProduct(prev => !prev)} />
-            </Modal>
+            </Modal>}
             <div className="product" onClick={() => showProductDetails(props.product._id)}>
                 <div className="product_picture">
                     <img src={props.product.image} alt={props.product.productName} />

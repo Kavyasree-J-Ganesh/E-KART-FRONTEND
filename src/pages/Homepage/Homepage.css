@@ -3,6 +3,9 @@
     grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
     grid-gap:15px;
     padding: 20px 10%;
+    position: relative;
+    padding-top: 70px;
+    justify-content: center;
 }
 
 .homepage_products >*{
@@ -19,4 +22,10 @@
     letter-spacing: 0px;
     color: #0A0102;
     opacity: 1;
+}
+
+@media screen and (max-width: 600px) {
+    .homepage_products{
+        padding-top: 100px;
+    }
 }
