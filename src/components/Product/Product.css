@@ -3,6 +3,8 @@
     border-radius: 3px;
     opacity: 1;
     cursor: pointer;
+    justify-self: center;
+    width: 100%
 }
 
 .product_picture{

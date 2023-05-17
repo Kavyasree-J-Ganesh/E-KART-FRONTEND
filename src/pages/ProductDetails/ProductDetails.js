@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import "./ProductDetails.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getProduct } from "../../Services/ProductService";
 import { addToCart, removeFromCart, getCart } from "../../Services/cartService";
 import { Rating } from "react-simple-star-rating";
@@ -20,16 +20,18 @@ const ProductDetails = (props) => {
   const [currentProduct, setCurrentProduct] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation()
   const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
 
   useEffect(() => {
     getProductById(id);
   }, [id]);
 
-  const isAuthenticationRequired = () => {
+  const isAuthenticationRequired = (path) => {
     if (!auth.isLogin) {
       // toaster("info", "login/signup to continue");
-      dispatch({ type: "SET_LOGIN_REQUIRED" });
+      
+      dispatch({ type: "SET_LOGIN_REQUIRED", payload:path });
       return true;
     }
 
@@ -37,7 +39,7 @@ const ProductDetails = (props) => {
   };
 
   const handleAddToWishList = () => {
-    if (isAuthenticationRequired()) {
+    if (isAuthenticationRequired("")) {
       return;
     }
     addToWishlist(id)

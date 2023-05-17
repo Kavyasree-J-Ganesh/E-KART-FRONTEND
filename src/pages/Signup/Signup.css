@@ -221,7 +221,7 @@ body {
 
 @media screen and (max-width: 400px) {
   .signup-page {
-    width: 100%;
+    width: 95vw;
   }
 }
 .visiablity-btn {
