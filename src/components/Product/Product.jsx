@@ -41,7 +41,7 @@ const Product = (props) => {
                 <AddProduct isNew={false} product={props.product} close={() => setIsAddProduct(prev => !prev)} />
             </Modal>
             <div className="product" onClick={() => showProductDetails(props.product._id)}>
-                <div className="product_img">
+                <div className="product_picture">
                     <img src={props.product.image} alt={props.product.productName} />
                 </div>
                 <div className="product_details">
