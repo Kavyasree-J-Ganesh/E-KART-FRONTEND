@@ -16,6 +16,8 @@ import { toaster } from "../../utils/toast";
 import Badge from "@mui/material/Badge";
 import HistoryIcon from "@mui/icons-material/History";
 
+
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: "10px",
@@ -34,6 +36,7 @@ const Search = styled("div")(({ theme }) => ({
   alignItems: "center",
 }));
 
+
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
@@ -43,6 +46,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
 }));
+
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
@@ -61,6 +65,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
 const Header = ({ search, setSearch }) => {
   const navigate = useNavigate();
   const { auth, cart, wishlist } = useSelector((state) => state);
@@ -72,8 +77,8 @@ const Header = ({ search, setSearch }) => {
   const navigateToHome = () => {
     
       navigate("/home");
-    
-  };
+    };
+
 
   const isAuthenticationRequired = (path) => {
     if (!auth.isLogin) {
@@ -84,6 +89,7 @@ const Header = ({ search, setSearch }) => {
 
     return false;
   };
+
 
   const logout = () => {
     navigate("/");
@@ -149,7 +155,7 @@ const Header = ({ search, setSearch }) => {
               onChange: handleSubmit,
             }}
           // value={search}
-          // onChange={handleSubmit}
+          // onChange={handleSubmit} 
           />
         </Search>
       </div>
