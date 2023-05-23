@@ -1,9 +1,5 @@
 import axios from "axios";
 
-const headerConfig = {
-  headers: { Authorization: `bearer ${localStorage.getItem("auth")}` },
-};
-
 const getToken = () => {
   return localStorage.getItem("auth");
 };
@@ -17,6 +13,9 @@ export const getAddress = async () => {
 };
 
 export const deleteAddress = async (id) => {
+  const headerConfig = {
+    headers: { Authorization: `bearer ${localStorage.getItem("auth")}` },
+  };
   const result = await axios.put(
     `http://localhost:6060/api/v1/address/delete/${id}`,
     {},
@@ -26,6 +25,9 @@ export const deleteAddress = async (id) => {
 };
 
 export const createAddress = async (data) => {
+  const headerConfig = {
+    headers: { Authorization: `bearer ${localStorage.getItem("auth")}` },
+  };
   const result = await axios.post(
     `http://localhost:6060/api/v1/address`,
     data,
